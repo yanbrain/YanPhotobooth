@@ -11,7 +11,7 @@ import { useSendEmailStore } from '@/features/send-email/model/send-email-store'
 export function SuccessPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const action = searchParams.get('action');
+  const action = searchParams?.get('action');
 
   const { clearCapture } = useCaptureStore();
   const { clearSelection } = useSelectStyleStore();
