@@ -28,16 +28,3 @@ export async function generateWithRunwareMock(
   logger.info('✅ MOCK: Generation complete', { taskId, mockImage });
   return mockImage;
 }
-
-// Mock function to simulate errors for testing
-export async function generateWithRunwareMockWithError(
-  imageBase64: string,
-  prompt: string,
-  taskId: string
-): Promise<string> {
-  logger.info('❌ MOCK: Simulating Runware error', { taskId });
-
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  throw new Error('MOCK: Simulated Runware error for testing');
-}
