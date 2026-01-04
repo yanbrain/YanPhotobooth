@@ -1,4 +1,4 @@
-import { ReviewPage } from '@/pages/review/ui/ReviewPage';
+import { ReviewPage } from '@/views/review/ui/ReviewPage';
 
 export default function ReviewRoute() {
   return <ReviewPage />;

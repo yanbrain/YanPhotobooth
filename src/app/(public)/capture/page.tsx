@@ -1,4 +1,4 @@
-import { CapturePage } from '@/pages/capture/ui/CapturePage';
+import { CapturePage } from '@/views/capture/ui/CapturePage';
 
 export default function CaptureRoute() {
   return <CapturePage />;
