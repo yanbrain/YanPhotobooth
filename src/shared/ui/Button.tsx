@@ -3,7 +3,7 @@ import React from 'react';
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   className?: string;
@@ -19,23 +19,46 @@ export function Button({
   className = '',
   type = 'button',
 }: ButtonProps) {
-  const baseStyles = 'font-bold rounded-lg transition-all duration-200 uppercase tracking-wider';
+  const baseStyles = 'font-cyber font-bold uppercase tracking-widest transition-all duration-300 relative overflow-hidden group';
 
   const variantStyles = {
-    primary: 'bg-gradient-to-r from-neon-cyan to-neon-purple text-white hover:shadow-lg hover:shadow-neon-purple/50',
-    secondary: 'bg-gradient-to-r from-neon-purple to-neon-pink text-white hover:shadow-lg hover:shadow-neon-pink/50',
-    outline: 'border-2 border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10',
+    primary: `
+      bg-gradient-to-r from-neon-cyan via-cyber-blue to-neon-purple
+      text-cyber-darker shadow-neon-cyan
+      hover:shadow-neon-purple hover:scale-105
+      before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
+      before:translate-x-[-200%] before:transition-transform before:duration-700
+      hover:before:translate-x-[200%]
+    `,
+    secondary: `
+      bg-gradient-to-r from-neon-purple via-neon-pink to-cyber-pink
+      text-white shadow-neon-pink
+      hover:shadow-neon-purple hover:scale-105
+      before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
+      before:translate-x-[-200%] before:transition-transform before:duration-700
+      hover:before:translate-x-[200%]
+    `,
+    outline: `
+      border-2 border-neon-cyan text-neon-cyan bg-transparent
+      hover:bg-neon-cyan/10 hover:shadow-neon-cyan
+      hover:text-white hover:border-neon-purple
+    `,
+    ghost: `
+      bg-cyber-dark/50 backdrop-blur-sm border border-neon-cyan/30
+      text-neon-cyan hover:bg-neon-cyan/20
+      hover:border-neon-cyan hover:shadow-glass
+    `,
   };
 
   const sizeStyles = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-8 py-4 text-base',
-    lg: 'px-12 py-6 text-xl',
+    sm: 'px-6 py-2 text-xs rounded',
+    md: 'px-10 py-3 text-sm rounded-lg',
+    lg: 'px-14 py-4 text-base rounded-xl',
   };
 
   const disabledStyles = disabled
-    ? 'opacity-50 cursor-not-allowed'
-    : 'cursor-pointer';
+    ? 'opacity-40 cursor-not-allowed grayscale'
+    : 'cursor-pointer active:scale-95';
 
   return (
     <button
@@ -44,7 +67,7 @@ export function Button({
       disabled={disabled}
       className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${disabledStyles} ${className}`}
     >
-      {children}
+      <span className="relative z-10">{children}</span>
     </button>
   );
 }
