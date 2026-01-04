@@ -1,9 +1,9 @@
 import * as functions from 'firebase-functions';
-import { handleGenerate } from './http/generate';
-import { handleStatus } from './http/status';
-import { handleEmail } from './http/email';
+import { handleGenerate } from './controllers/generate';
+import { handleStatus } from './controllers/status';
+import { handleEmail } from './controllers/email';
 import { validateEnv } from './config/env';
-import { logger } from './lib/logger';
+import { logger } from './utils/logger';
 
 // Validate environment on startup
 try {

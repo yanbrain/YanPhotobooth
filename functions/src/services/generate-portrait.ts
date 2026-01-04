@@ -8,9 +8,9 @@ import { verifyBotToken } from '../adapters/bot-check';
 import {
   getJobForIdempotencyKey,
   setJobForIdempotencyKey,
-} from '../lib/idempotency';
+} from '../utils/idempotency';
 import { env } from '../config/env';
-import { logger } from '../lib/logger';
+import { logger } from '../utils/logger';
 
 // In-memory job store (would use Firestore in production)
 const jobStore = new Map<string, GenerationJob>();

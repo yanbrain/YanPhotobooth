@@ -1,4 +1,4 @@
-import { logger } from '../../lib/logger';
+import { logger } from '../../utils/logger';
 
 // Mock Runware client for local development
 // Returns fake images instantly without API calls

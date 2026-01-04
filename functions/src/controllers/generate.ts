@@ -1,8 +1,8 @@
 import type * as functions from 'firebase-functions';
 import Busboy from 'busboy';
-import { generatePortrait } from '../usecases/generate-portrait';
-import { handleError } from '../lib/http-errors';
-import { logger } from '../lib/logger';
+import { generatePortrait } from '../services/generate-portrait';
+import { handleError } from '../utils/http-errors';
+import { logger } from '../utils/logger';
 
 interface GenerateFields {
   styleId?: string;

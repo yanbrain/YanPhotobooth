@@ -1,6 +1,6 @@
 import { env } from '../config/env';
 import { EmailError } from '../domain/errors';
-import { logger } from '../lib/logger';
+import { logger } from '../utils/logger';
 import { sendEmailMock } from './mocks/email-mock';
 
 export async function sendEmailWithImage(

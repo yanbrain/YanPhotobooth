@@ -1,7 +1,7 @@
 import type * as functions from 'firebase-functions';
-import { getGenerationStatus } from '../usecases/get-status';
-import { handleError } from '../lib/http-errors';
-import { logger } from '../lib/logger';
+import { getGenerationStatus } from '../services/get-status';
+import { handleError } from '../utils/http-errors';
+import { logger } from '../utils/logger';
 
 export async function handleStatus(
   req: functions.https.Request,

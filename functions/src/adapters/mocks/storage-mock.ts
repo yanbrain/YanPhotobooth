@@ -1,4 +1,4 @@
-import { logger } from '../../lib/logger';
+import { logger } from '../../utils/logger';
 
 // Mock storage client for local development
 // Returns fake URLs instead of actually uploading to Firebase Storage

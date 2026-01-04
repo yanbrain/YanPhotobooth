@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { logger } from '../lib/logger';
+import { logger } from '../utils/logger';
 import { env } from '../config/env';
 import { uploadImageMock, downloadImageAsBase64Mock } from './mocks/storage-mock';
 
