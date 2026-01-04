@@ -49,10 +49,41 @@ YanPhotobooth/
 - Node.js 18+
 - npm or yarn
 - Firebase CLI (`npm install -g firebase-tools`)
-- Runware API key (sign up at https://runware.ai)
-- Firebase project
 
-## Local Development Setup
+**Note**: You do NOT need a Runware API key for local development! See setup below.
+
+## 🎯 Professional 3-Environment Setup
+
+This project uses a professional development workflow with **three environments**:
+
+```
+┌─────────────────────────────────────────────┐
+│ LOCAL (Your Laptop) - USES MOCKS           │
+│ ✅ No API keys needed                       │
+│ ✅ $0 cost                                  │
+│ ✅ Fast (2-second fake AI generation)       │
+│ ✅ Works offline                            │
+└─────────────────────────────────────────────┘
+          ↓ Deploy when ready to test with real AI
+┌─────────────────────────────────────────────┐
+│ STAGING (Firebase Dev Project)             │
+│ ✅ Real Runware API (test credits)          │
+│ ✅ Real email                               │
+│ ✅ Test before production                   │
+└─────────────────────────────────────────────┘
+          ↓ Deploy when ready for users
+┌─────────────────────────────────────────────┐
+│ PRODUCTION (Firebase Prod Project)         │
+│ ✅ Live users                               │
+│ ✅ Production Runware credits               │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 Quick Start (LOCAL with Mocks)
+
+This is the **recommended** way to start developing. No API keys needed!
 
 ### 1. Clone and Install
 
@@ -69,50 +100,19 @@ npm install
 cd ..
 ```
 
-### 2. Configure Environment Variables
+### 2. Configure for Mock Mode
 
-**Frontend** (`.env.local`):
-```bash
-cp .env.example .env.local
-```
-
-Edit `.env.local` if needed (optional for local dev).
-
-**Backend** (`functions/.env`):
-```bash
-cp functions/.env.example functions/.env
-```
-
-Edit `functions/.env` and add:
-```env
-RUNWARE_API_KEY=your_runware_api_key_here
-FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-EMAIL_API_KEY=your_sendgrid_api_key  # Optional
-EMAIL_FROM=noreply@yourapp.com
-DAILY_MAX_GENERATIONS=1000
-NODE_ENV=development
-```
-
-### 3. Set Up Firebase
+The `.env` file is already configured for mock mode:
 
 ```bash
-# Login to Firebase
-firebase login
-
-# Initialize Firebase (if not already done)
-firebase init
-
-# Select:
-# - Functions
-# - Hosting
-# - Storage
-
-# Update .firebaserc with your project ID
+# Already configured in functions/.env
+USE_MOCK=true
+MOCK_GENERATION_DELAY=2000  # 2 seconds (adjust for testing)
 ```
 
-### 4. Run Development Servers
+**That's it!** No API keys needed for local development.
 
-**Option A: Frontend + Firebase Emulators**
+### 3. Run with Firebase Emulators
 
 Terminal 1 - Start Firebase emulators:
 ```bash
@@ -120,17 +120,76 @@ cd functions
 npm run serve
 ```
 
+You'll see:
+```
+✅ MOCK: Simulating Runware generation
+🎨 Using fake AI images (no API calls)
+📧 Emails logged to console (not sent)
+```
+
 Terminal 2 - Start Next.js dev server:
 ```bash
 npm run dev
 ```
 
-**Option B: Frontend Only (with deployed backend)**
-```bash
-npm run dev
+Visit http://localhost:3000
+
+### 4. Test the Flow
+
+1. Capture a photo from webcam
+2. Select a style (e.g., Cyberpunk)
+3. Click START
+4. **Mock generation completes in 2 seconds** (vs 30+ seconds with real API)
+5. View result (random placeholder image)
+6. Test Email (logs to console instead of sending)
+
+**Benefits:**
+- ✅ Develop without spending $$ on Runware credits
+- ✅ Fast iteration (no 30+ second wait for AI)
+- ✅ Works offline
+- ✅ Predictable results for debugging
+
+---
+
+## 🔧 Staging Setup (Real APIs for Testing)
+
+When you're ready to test with **real** Runware API:
+
+### 1. Get API Keys
+
+- Sign up at https://runware.ai
+- Get test API key (separate from production)
+
+### 2. Update Environment
+
+Edit `functions/.env`:
+```env
+# Switch to real mode
+USE_MOCK=false
+
+# Add real credentials
+RUNWARE_API_KEY=your_test_api_key_here
+FIREBASE_STORAGE_BUCKET=your-staging-project.appspot.com
+EMAIL_API_KEY=your_test_email_key
 ```
 
-Visit http://localhost:3000
+### 3. Deploy to Staging Firebase Project
+
+```bash
+# Set staging project
+firebase use staging
+
+# Deploy
+firebase deploy
+```
+
+Now test with **real** AI generation before going to production.
+
+---
+
+## 📦 Production Deployment
+
+See full deployment section below.
 
 ## Building for Production
 
