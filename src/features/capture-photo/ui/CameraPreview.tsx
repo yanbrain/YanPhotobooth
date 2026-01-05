@@ -115,39 +115,9 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
     };
   }, []);
 
-  if (error) {
-    return (
-      <div className="relative flex items-center justify-center h-full glass-card rounded-none border border-cyber-pink overflow-hidden">
-        <div className="absolute inset-0 cyber-grid opacity-15" />
-
-        <div className="relative text-center p-8 z-10">
-          <p className="text-cyber-pink text-xl mb-2 font-cyber font-semibold neon-text">
-            Camera Access Error
-          </p>
-          <p className="text-neon-cyan/80 text-sm mb-6 font-mono">
-            {error}
-          </p>
-
-          <button
-            onClick={() => window.location.reload()}
-            className="
-              relative px-8 py-3 rounded-none font-cyber font-semibold text-lg
-              bg-cyber-dark text-cyber-pink border border-cyber-pink
-              hover:text-white hover:border-cyber-pink/80
-              transition-all duration-200
-            "
-          >
-            Retry Camera
-          </button>
-        </div>
-
-      </div>
-    );
-  }
-
   return (
     <div className="relative w-full h-full group">
-      <div className="relative w-full h-full glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass bg-black/70">
+      <div className="relative w-full h-full glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass bg-black/80">
         <video
           ref={videoRef}
           autoPlay
@@ -171,6 +141,31 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
               <p className="text-neon-cyan/50 text-[11px] font-mono">
                 The browser permission prompt must be accepted to continue.
               </p>
+            </div>
+          </div>
+        )}
+
+        {error && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/70" style={{ zIndex: 40 }}>
+            <div className="relative text-center p-8 z-10 max-w-md">
+              <p className="text-cyber-pink text-xl mb-2 font-cyber font-semibold neon-text">
+                Camera Access Error
+              </p>
+              <p className="text-neon-cyan/80 text-sm mb-6 font-mono">
+                {error}
+              </p>
+
+              <button
+                onClick={() => window.location.reload()}
+                className="
+                  relative px-8 py-3 rounded-none font-cyber font-semibold text-lg
+                  bg-cyber-dark text-cyber-pink border border-cyber-pink
+                  hover:text-white hover:border-cyber-pink/80
+                  transition-all duration-200
+                "
+              >
+                Retry Camera
+              </button>
             </div>
           </div>
         )}
