@@ -96,8 +96,6 @@ export function ReviewPage() {
               <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
               <div className="relative flex flex-col items-center justify-center px-4 sm:px-8 py-8 sm:py-10 gap-5 sm:gap-6 min-h-0">
-                <div className="text-6xl">⚠️</div>
-
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-cyber font-semibold text-cyber-pink neon-text text-center uppercase tracking-[0.15em] sm:tracking-[0.2em]">
                   {errorMapping.title}
                 </h2>
@@ -118,10 +116,6 @@ export function ReviewPage() {
                 </div>
               </div>
 
-              <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-cyber-pink/70" />
-              <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-cyber-pink/70" />
-              <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-cyber-pink/70" />
-              <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-cyber-pink/70" />
             </div>
           </div>
         </div>
@@ -144,7 +138,7 @@ export function ReviewPage() {
               <header className="flex flex-col gap-3 border-b border-neon-cyan/20 bg-cyber-dark/70 px-4 sm:px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
                 <div className="flex items-center justify-center md:justify-start gap-3">
                   <Button onClick={handleBack} variant="ghost" size="sm" className="w-full md:w-auto">
-                    ← Back
+                    Back
                   </Button>
                 </div>
 
@@ -157,27 +151,13 @@ export function ReviewPage() {
                   </p>
                 </div>
 
-                <div className="flex items-center justify-center md:justify-end text-neon-cyan/60 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em]">
-                  Output Review
-                </div>
+                <div className="hidden md:block" />
               </header>
 
               <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-4 sm:py-6 gap-5 sm:gap-6 min-h-0">
                 <div className="relative w-full max-w-5xl">
-                  <div className="absolute -top-7 sm:-top-8 left-1/2 -translate-x-1/2 z-20 glass-card px-4 sm:px-6 py-2 rounded-none border border-neon-green">
-                    <p className="text-neon-green text-xs sm:text-base font-cyber font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] flex items-center gap-2">
-                      <span className="text-xl">✨</span>
-                      Portrait Generated Successfully
-                    </p>
-                  </div>
-
                   <div className="relative aspect-video max-h-[48vh] sm:max-h-[52vh] lg:max-h-[58vh]">
                     <div className="relative h-full glass-card rounded-none border border-neon-cyan/60 overflow-hidden">
-                      <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan z-10" />
-                      <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan z-10" />
-                      <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-neon-cyan z-10" />
-                      <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-neon-cyan z-10" />
-
                       {resultUrl && (
                         <img
                           src={resultUrl}
@@ -186,7 +166,6 @@ export function ReviewPage() {
                         />
                       )}
 
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-cyan/5 to-transparent pointer-events-none" />
                     </div>
                   </div>
                 </div>
@@ -199,10 +178,7 @@ export function ReviewPage() {
                       size="lg"
                       className="flex-1 py-4 sm:py-5 text-base sm:text-lg"
                     >
-                      <span className="flex items-center gap-2">
-                        <span>🖨️</span>
-                        Print Photo
-                      </span>
+                      Print Photo
                     </Button>
                     <Button
                       onClick={handleEmailClick}
@@ -210,10 +186,7 @@ export function ReviewPage() {
                       size="lg"
                       className="flex-1 py-4 sm:py-5 text-base sm:text-lg"
                     >
-                      <span className="flex items-center gap-2">
-                        <span>📧</span>
-                        Email Photo
-                      </span>
+                      Email Photo
                     </Button>
                   </div>
 
@@ -224,10 +197,6 @@ export function ReviewPage() {
               </div>
             </div>
 
-            <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-neon-cyan/70" />
-            <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-neon-cyan/70" />
-            <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-neon-cyan/70" />
-            <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-neon-cyan/70" />
           </div>
         </div>
       </div>

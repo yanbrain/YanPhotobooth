@@ -109,10 +109,6 @@ export function StylesPage() {
                 <GenerationProgress progress={progress} status={status} />
               </div>
 
-              <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-neon-cyan/70" />
-              <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-neon-cyan/70" />
-              <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-neon-cyan/70" />
-              <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-neon-cyan/70" />
             </div>
           </div>
         </div>
@@ -135,7 +131,7 @@ export function StylesPage() {
               <header className="flex flex-col gap-3 border-b border-neon-cyan/20 bg-cyber-dark/70 px-4 sm:px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
                 <div className="flex items-center justify-center md:justify-start gap-3">
                   <Button onClick={handleBack} variant="ghost" size="sm" className="w-full md:w-auto">
-                    ← Back
+                    Back
                   </Button>
                 </div>
 
@@ -148,9 +144,7 @@ export function StylesPage() {
                   </p>
                 </div>
 
-                <div className="flex items-center justify-center md:justify-end text-neon-cyan/60 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em]">
-                  Style Matrix
-                </div>
+                <div className="hidden md:block" />
               </header>
 
               <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-4 sm:py-6 gap-5 sm:gap-6 md:gap-8 min-h-0">
@@ -173,18 +167,13 @@ export function StylesPage() {
                         onSelectStyle={selectStyle}
                       />
                     </div>
-                    <div className="absolute top-2 left-2 w-5 h-5 border-t border-l border-neon-cyan/40" />
-                    <div className="absolute top-2 right-2 w-5 h-5 border-t border-r border-neon-cyan/40" />
-                    <div className="absolute bottom-2 left-2 w-5 h-5 border-b border-l border-neon-cyan/40" />
-                    <div className="absolute bottom-2 right-2 w-5 h-5 border-b border-r border-neon-cyan/40" />
                   </div>
                 </div>
 
                 <div className="w-full max-w-2xl space-y-4">
                   {selectedStyleId && (
                     <div className="text-center">
-                      <p className="text-neon-green text-base sm:text-lg font-cyber flex items-center justify-center gap-3 tracking-[0.15em] sm:tracking-[0.2em] uppercase">
-                        <span>✓</span>
+                      <p className="text-neon-green text-base sm:text-lg font-cyber tracking-[0.15em] sm:tracking-[0.2em] uppercase">
                         Style Selected
                       </p>
                     </div>
@@ -198,11 +187,7 @@ export function StylesPage() {
                       size="lg"
                       className="w-full sm:min-w-80 sm:w-auto py-4 sm:py-6 text-base sm:text-xl"
                     >
-                      <span className="flex items-center gap-3">
-                        <span>🎨</span>
-                        <span>GENERATE PORTRAIT</span>
-                        <span>→</span>
-                      </span>
+                      GENERATE PORTRAIT
                     </Button>
                   </div>
 
@@ -215,10 +200,6 @@ export function StylesPage() {
               </div>
             </div>
 
-            <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-neon-cyan/70" />
-            <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-neon-cyan/70" />
-            <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-neon-cyan/70" />
-            <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-neon-cyan/70" />
           </div>
         </div>
       </div>

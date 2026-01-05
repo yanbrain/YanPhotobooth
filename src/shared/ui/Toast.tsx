@@ -23,19 +23,6 @@ export function Toast({ id, type, message, duration = 5000, onDismiss }: ToastPr
     }
   }, [id, duration, onDismiss]);
 
-  const getIcon = () => {
-    switch (type) {
-      case 'success':
-        return '✓';
-      case 'error':
-        return '⚠';
-      case 'warning':
-        return '⚡';
-      case 'info':
-        return 'ℹ';
-    }
-  };
-
   const getColors = () => {
     switch (type) {
       case 'success':
@@ -75,10 +62,6 @@ export function Toast({ id, type, message, duration = 5000, onDismiss }: ToastPr
       <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
       <div className="relative flex items-start gap-3">
-        <div className="text-2xl">
-          {getIcon()}
-        </div>
-
         <p className="flex-1 text-white text-sm font-mono leading-relaxed pt-1">
           {message}
         </p>
@@ -99,9 +82,6 @@ export function Toast({ id, type, message, duration = 5000, onDismiss }: ToastPr
           </span>
         </button>
       </div>
-
-      <div className={`absolute bottom-1 left-1 w-3 h-3 border-b border-l ${getColors()} opacity-60`} />
-      <div className={`absolute bottom-1 right-1 w-3 h-3 border-b border-r ${getColors()} opacity-60`} />
 
       {duration > 0 && (
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-cyber-dark/60 overflow-hidden">
