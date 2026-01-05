@@ -94,7 +94,7 @@ export function CapturePage() {
 
                 <div className="flex-1 flex items-center justify-center">
                   <div className="relative w-full max-w-4xl">
-                    <div className="relative w-full aspect-[16/9] min-h-[420px] max-h-[70vh]">
+                    <div className="relative aspect-video min-h-[420px]">
                       <div className="relative h-full glass-card rounded-none border-2 border-neon-cyan/60 overflow-hidden">
                         <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan z-10" />
                         <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan z-10" />
