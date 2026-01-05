@@ -13,6 +13,7 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -30,12 +31,19 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
           const video = videoRef.current;
           video.srcObject = mediaStream;
 
-          video.onloadedmetadata = () => {
+          video.onloadedmetadata = async () => {
             console.log('✅ Video metadata loaded', {
               videoWidth: video.videoWidth,
               videoHeight: video.videoHeight,
               readyState: video.readyState
             });
+            try {
+              await video.play();
+            } catch (playError) {
+              console.warn('⚠️ Unable to autoplay camera feed', playError);
+            }
+            setIsReady(true);
+            setIsLoading(false);
           };
 
           console.log('✅ Camera stream set to video element', {
@@ -47,7 +55,6 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
           console.error('❌ Video ref is null!');
         }
         onStreamReady?.(mediaStream);
-        setIsLoading(false);
       } catch (err) {
         if (!mounted) return;
         const errorMessage = err instanceof Error ? err.message : 'Failed to access camera';
@@ -103,23 +110,13 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
 
   return (
     <div className="relative w-full h-full group">
-      <div className="relative w-full h-full glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass" style={{ minHeight: '400px' }}>
+      <div className="relative w-full h-full min-h-[420px] aspect-[16/9] glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass bg-black/70">
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
-          className="w-full h-full object-cover"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 1,
-            display: 'block',
-            backgroundColor: 'black'
-          }}
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
         <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" style={{ zIndex: 5 }} />
@@ -128,16 +125,19 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-cyan/5 to-transparent animate-scanline" />
         </div>
 
-        {isLoading && (
+        {(isLoading || !isReady) && (
           <div className="absolute inset-0 flex items-center justify-center bg-cyber-dark/90" style={{ zIndex: 30 }}>
-            <div className="text-center">
+            <div className="text-center max-w-sm">
               <div className="mb-4 text-5xl">📷</div>
 
               <p className="text-neon-cyan text-xl font-cyber font-semibold neon-text">
-                Initializing Camera
+                Camera Feed Pending
               </p>
               <p className="text-neon-cyan/60 text-sm font-mono mt-2">
-                Please allow camera access...
+                Allow camera access in your browser to display the live feed.
+              </p>
+              <p className="text-neon-cyan/40 text-xs font-mono mt-3">
+                If permission was denied, refresh and approve access.
               </p>
 
               <div className="flex justify-center gap-2 mt-4">
@@ -154,7 +154,7 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
         <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
         <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
 
-        {!isLoading && (
+        {!isLoading && isReady && (
           <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 glass-card rounded-none border border-neon-cyan/30" style={{ zIndex: 25 }}>
             <div className="w-2 h-2 bg-neon-green animate-pulse shadow-neon-cyan" />
             <span className="text-neon-cyan text-xs font-mono uppercase tracking-[0.2em]">Live</span>
