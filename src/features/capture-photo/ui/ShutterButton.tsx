@@ -57,13 +57,14 @@ export function ShutterButton({ onClick, disabled = false }: ShutterButtonProps)
           `}
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div
-              className={`
-                w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full
-                ${disabled ? 'bg-gray-600' : 'bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.6)]'}
-                transition-all duration-300
-              `}
-            />
+            <svg
+              className={`w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 ${disabled ? 'text-gray-500' : 'text-neon-cyan'}`}
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 3.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17Zm0 2a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm.02 1.9 3.7 2.13a.75.75 0 0 1 .27 1.02l-2.13 3.7a.75.75 0 0 1-.65.38H9.8a.75.75 0 0 1-.65-.38l-2.13-3.7a.75.75 0 0 1 .27-1.02l3.7-2.13a.75.75 0 0 1 .76 0Z" />
+            </svg>
           </div>
         </div>
       </div>

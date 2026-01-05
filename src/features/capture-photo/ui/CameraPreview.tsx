@@ -28,6 +28,12 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
           return;
         }
 
+        const [videoTrack] = mediaStream.getVideoTracks();
+        if (!videoTrack) {
+          stopCameraStream(mediaStream);
+          throw new Error('No camera device found. Please connect a camera and try again.');
+        }
+
         setStream(mediaStream);
         if (videoRef.current) {
           const video = videoRef.current;
@@ -73,6 +79,22 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
           console.error('Video ref is null!');
         }
         onStreamReady?.(mediaStream);
+
+        mediaStream.oninactive = () => {
+          if (!mounted) return;
+          const message = 'Camera disconnected. Please reconnect the camera and retry.';
+          setError(message);
+          onError?.(message);
+          setIsLoading(false);
+        };
+
+        videoTrack.onended = () => {
+          if (!mounted) return;
+          const message = 'Camera disconnected. Please reconnect the camera and retry.';
+          setError(message);
+          onError?.(message);
+          setIsLoading(false);
+        };
       } catch (err) {
         if (!mounted) return;
         const errorMessage = err instanceof Error ? err.message : 'Failed to access camera';
