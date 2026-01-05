@@ -116,28 +116,37 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
   return (
     <div className="relative w-full h-full group">
       {/* Camera feed container */}
-      <div className="relative w-full h-full glass-card rounded-2xl border-2 border-neon-cyan/40 overflow-hidden shadow-glass">
-        {/* Video element - MUST be first so overlays render on top */}
+      <div className="relative w-full h-full glass-card rounded-2xl border-2 border-neon-cyan/40 overflow-hidden shadow-glass" style={{ minHeight: '400px' }}>
+        {/* Video element - MUST be visible */}
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ zIndex: 0 }}
+          className="w-full h-full object-cover"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 1,
+            display: 'block',
+            backgroundColor: 'black'
+          }}
         />
 
         {/* Cyber grid overlay */}
-        <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" style={{ zIndex: 1 }} />
+        <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" style={{ zIndex: 5 }} />
 
         {/* Scanline effect */}
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 5 }}>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-cyan/5 to-transparent animate-scanline" />
         </div>
 
         {/* Loading state */}
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-cyber-dark/80 backdrop-blur-sm" style={{ zIndex: 20 }}>
+          <div className="absolute inset-0 flex items-center justify-center bg-cyber-dark/80 backdrop-blur-sm" style={{ zIndex: 30 }}>
             <div className="text-center">
               {/* Loading icon */}
               <div className="mb-4 text-6xl animate-pulse-neon">📷</div>
@@ -161,14 +170,14 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
         )}
 
         {/* Decorative corner brackets */}
-        <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 10 }} />
-        <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 10 }} />
-        <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 10 }} />
-        <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 10 }} />
+        <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
+        <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
+        <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
+        <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
 
         {/* Status indicator */}
         {!isLoading && (
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 glass-card rounded-full border border-neon-cyan/30" style={{ zIndex: 20 }}>
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 glass-card rounded-full border border-neon-cyan/30" style={{ zIndex: 25 }}>
             <div className="w-2 h-2 rounded-full bg-neon-green animate-pulse shadow-neon-cyan" />
             <span className="text-neon-cyan text-xs font-mono uppercase tracking-wider">Live</span>
           </div>
