@@ -35,31 +35,31 @@ export function SuccessPage() {
   };
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative min-h-[100svh] overflow-hidden">
       <div className="fixed inset-0 bg-cyber-darker">
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
+      <div className="relative z-10 min-h-[100svh] flex items-center justify-center px-3 sm:px-4 py-3 sm:py-4">
         <div className="w-full max-w-5xl">
           <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-            <div className="relative flex flex-col items-center justify-center px-6 py-10 gap-8 min-h-0">
+            <div className="relative flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-10 gap-6 sm:gap-8 min-h-0">
               <div className="text-center">
-                <h1 className="text-4xl md:text-6xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-3">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.25em] sm:tracking-[0.3em] mb-3">
                   {message}
                 </h1>
-                <p className="text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.4em]">
+                <p className="text-neon-cyan/50 text-[10px] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em]">
                   Session Complete
                 </p>
               </div>
 
               <div className="relative">
-                <div className="absolute inset-0 w-40 h-40 md:w-48 md:h-48 border border-neon-cyan/30 animate-spin" style={{ animationDuration: '8s' }} />
-                <div className="absolute inset-3 md:inset-4 border border-neon-purple" />
-                <div className="relative w-40 h-40 md:w-48 md:h-48 border-2 border-neon-cyan flex items-center justify-center shadow-neon-cyan">
-                  <span className="text-6xl md:text-7xl drop-shadow-[0_0_12px_rgba(0,229,255,0.6)]">
+                <div className="absolute inset-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 border border-neon-cyan/30 animate-spin" style={{ animationDuration: '8s' }} />
+                <div className="absolute inset-2 sm:inset-3 md:inset-4 border border-neon-purple" />
+                <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 border-2 border-neon-cyan flex items-center justify-center shadow-neon-cyan">
+                  <span className="text-5xl sm:text-6xl md:text-7xl drop-shadow-[0_0_12px_rgba(0,229,255,0.6)]">
                     {action === 'email' ? '📧' : action === 'print' ? '🖨️' : '✓'}
                   </span>
 
@@ -72,7 +72,7 @@ export function SuccessPage() {
 
               <div className="text-center space-y-4">
                 <div className="glass-card px-8 py-4 rounded-none border border-neon-cyan/40 max-w-2xl mx-auto">
-                  <p className="text-white text-lg md:text-xl font-mono">
+                  <p className="text-white text-base sm:text-lg md:text-xl font-mono">
                     {action === 'email'
                       ? 'Check your inbox for your amazing AI portrait!'
                       : action === 'print'
@@ -82,12 +82,12 @@ export function SuccessPage() {
                 </div>
 
                 {action === 'email' && (
-                  <p className="text-neon-cyan/60 text-sm font-mono mt-4">
+                  <p className="text-neon-cyan/60 text-xs sm:text-sm font-mono mt-4">
                     Your masterpiece will arrive within minutes
                   </p>
                 )}
                 {action === 'print' && (
-                  <p className="text-neon-cyan/60 text-sm font-mono mt-4">
+                  <p className="text-neon-cyan/60 text-xs sm:text-sm font-mono mt-4">
                     Print dialog should have opened in a new window
                   </p>
                 )}
@@ -98,7 +98,7 @@ export function SuccessPage() {
                   onClick={handleStartOver}
                   variant="primary"
                   size="lg"
-                  className="min-w-80 py-6 text-xl"
+                  className="w-full sm:min-w-80 sm:w-auto py-4 sm:py-6 text-base sm:text-xl"
                 >
                   <span className="flex items-center gap-3">
                     <span>🎨</span>
@@ -106,7 +106,7 @@ export function SuccessPage() {
                   </span>
                 </Button>
 
-                <p className="text-neon-cyan/50 text-sm font-mono">
+                <p className="text-neon-cyan/50 text-xs sm:text-sm font-mono">
                   Ready to create another masterpiece?
                 </p>
               </div>

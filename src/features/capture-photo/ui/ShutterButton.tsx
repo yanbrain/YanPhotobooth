@@ -13,7 +13,7 @@ export function ShutterButton({ onClick, disabled = false }: ShutterButtonProps)
       onClick={onClick}
       disabled={disabled}
       className={`
-        group relative w-28 h-28 rounded-full
+        group relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full
         transition-all duration-300 transform
         ${
           disabled
@@ -46,7 +46,7 @@ export function ShutterButton({ onClick, disabled = false }: ShutterButtonProps)
       <div className="absolute inset-0 flex items-center justify-center">
         <div
           className={`
-            relative w-20 h-20 rounded-full overflow-hidden
+            relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full overflow-hidden
             ${
               disabled
                 ? 'bg-gray-700'

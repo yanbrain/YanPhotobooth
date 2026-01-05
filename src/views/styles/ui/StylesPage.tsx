@@ -86,22 +86,22 @@ export function StylesPage() {
 
   if (isGenerating) {
     return (
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative min-h-[100svh] overflow-hidden">
         <div className="fixed inset-0 bg-cyber-darker">
           <div className="absolute inset-0 cyber-grid opacity-15" />
         </div>
 
-        <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
+        <div className="relative z-10 min-h-[100svh] flex items-center justify-center px-3 sm:px-4 py-3 sm:py-4">
           <div className="w-full max-w-4xl">
             <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
               <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-              <div className="relative flex flex-col items-center justify-center px-6 py-10 gap-10 min-h-0">
+              <div className="relative flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-10 gap-8 sm:gap-10 min-h-0">
                 <div className="text-center">
-                  <h1 className="text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-3">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.25em] sm:tracking-[0.3em] mb-3">
                     AI Photobooth
                   </h1>
-                  <p className="text-neon-cyan/60 text-xs font-mono uppercase tracking-[0.4em]">
+                  <p className="text-neon-cyan/60 text-[10px] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em]">
                     Generating Portrait
                   </p>
                 </div>
@@ -121,44 +121,44 @@ export function StylesPage() {
   }
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative min-h-[100svh] overflow-hidden">
       <div className="fixed inset-0 bg-cyber-darker">
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
+      <div className="relative z-10 min-h-[100svh] flex items-center justify-center px-3 sm:px-4 py-3 sm:py-4">
         <div className="w-full max-w-6xl">
           <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
             <div className="relative flex flex-col h-full min-h-0">
-              <header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b border-neon-cyan/20 bg-cyber-dark/70 px-6 py-4">
-                <div className="flex items-center gap-3">
-                  <Button onClick={handleBack} variant="ghost" size="sm">
+              <header className="flex flex-col gap-3 border-b border-neon-cyan/20 bg-cyber-dark/70 px-4 sm:px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
+                <div className="flex items-center justify-center md:justify-start gap-3">
+                  <Button onClick={handleBack} variant="ghost" size="sm" className="w-full md:w-auto">
                     ← Back
                   </Button>
                 </div>
 
                 <div className="text-center">
-                  <h1 className="text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.25em] sm:tracking-[0.3em] mb-1">
                     AI Photobooth
                   </h1>
-                  <p className="text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.4em]">
+                  <p className="text-neon-cyan/50 text-[10px] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em]">
                     Style Selection
                   </p>
                 </div>
 
-                <div className="flex items-center justify-end text-neon-cyan/60 text-xs font-mono uppercase tracking-[0.3em]">
+                <div className="flex items-center justify-center md:justify-end text-neon-cyan/60 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em]">
                   Style Matrix
                 </div>
               </header>
 
-              <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 gap-6 md:gap-8 min-h-0">
+              <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-4 sm:py-6 gap-5 sm:gap-6 md:gap-8 min-h-0">
                 <div className="text-center">
-                  <h2 className="text-3xl md:text-4xl font-cyber font-semibold text-neon-purple neon-text uppercase tracking-[0.25em] mb-2">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-cyber font-semibold text-neon-purple neon-text uppercase tracking-[0.2em] sm:tracking-[0.25em] mb-2">
                     Choose Your Style
                   </h2>
-                  <p className="text-neon-cyan/70 text-sm font-mono">
+                  <p className="text-neon-cyan/70 text-xs sm:text-sm font-mono">
                     Select an AI art style to transform your photo
                   </p>
                 </div>
@@ -183,7 +183,7 @@ export function StylesPage() {
                 <div className="w-full max-w-2xl space-y-4">
                   {selectedStyleId && (
                     <div className="text-center">
-                      <p className="text-neon-green text-lg font-cyber flex items-center justify-center gap-3 tracking-[0.2em] uppercase">
+                      <p className="text-neon-green text-base sm:text-lg font-cyber flex items-center justify-center gap-3 tracking-[0.15em] sm:tracking-[0.2em] uppercase">
                         <span>✓</span>
                         Style Selected
                       </p>
@@ -196,7 +196,7 @@ export function StylesPage() {
                       disabled={!selectedStyleId}
                       variant="primary"
                       size="lg"
-                      className="min-w-80 py-6 text-xl"
+                      className="w-full sm:min-w-80 sm:w-auto py-4 sm:py-6 text-base sm:text-xl"
                     >
                       <span className="flex items-center gap-3">
                         <span>🎨</span>
