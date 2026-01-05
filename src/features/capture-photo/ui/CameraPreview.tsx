@@ -5,10 +5,11 @@ import { requestCameraAccess, stopCameraStream } from '../lib/camera-utils';
 
 interface CameraPreviewProps {
   onStreamReady?: (stream: MediaStream) => void;
+  onVideoReady?: (videoElement: HTMLVideoElement) => void;
   onError?: (error: string) => void;
 }
 
-export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
+export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPreviewProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -31,6 +32,7 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
         if (videoRef.current) {
           const video = videoRef.current;
           video.srcObject = mediaStream;
+          onVideoReady?.(video);
 
           const markReady = async () => {
             console.log('✅ Video stream ready', {

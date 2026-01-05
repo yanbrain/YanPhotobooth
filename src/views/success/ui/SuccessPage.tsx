@@ -35,19 +35,19 @@ export function SuccessPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative h-screen overflow-hidden">
       <div className="fixed inset-0 bg-cyber-darker">
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-6 md:py-10">
+      <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
         <div className="w-full max-w-5xl">
           <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-            <div className="relative flex flex-col items-center justify-center px-6 py-12 gap-10 min-h-[80vh]">
+            <div className="relative flex flex-col items-center justify-center px-6 py-10 gap-8 min-h-0">
               <div className="text-center">
-                <h1 className="text-5xl md:text-7xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-4">
+                <h1 className="text-4xl md:text-6xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-3">
                   {message}
                 </h1>
                 <p className="text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.4em]">

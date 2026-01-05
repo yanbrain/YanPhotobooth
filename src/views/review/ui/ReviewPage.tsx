@@ -85,17 +85,17 @@ export function ReviewPage() {
     const errorMapping = mapError(generationError.code);
 
     return (
-      <div className="relative min-h-screen overflow-hidden">
+      <div className="relative h-screen overflow-hidden">
         <div className="fixed inset-0 bg-cyber-darker">
           <div className="absolute inset-0 cyber-grid opacity-15" />
         </div>
 
-        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-6 md:py-10">
+        <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
           <div className="w-full max-w-3xl">
             <div className="relative glass-card rounded-none border border-cyber-pink/70 shadow-glass">
               <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-              <div className="relative flex flex-col items-center justify-center px-8 py-12 gap-6 min-h-[60vh]">
+              <div className="relative flex flex-col items-center justify-center px-8 py-10 gap-6 min-h-0">
                 <div className="text-6xl">⚠️</div>
 
                 <h2 className="text-2xl md:text-3xl font-cyber font-semibold text-cyber-pink neon-text text-center uppercase tracking-[0.2em]">
@@ -130,17 +130,17 @@ export function ReviewPage() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative h-screen overflow-hidden">
       <div className="fixed inset-0 bg-cyber-darker">
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-6 md:py-10">
+      <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
         <div className="w-full max-w-6xl">
           <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-            <div className="relative flex flex-col min-h-[80vh]">
+            <div className="relative flex flex-col h-full min-h-0">
               <header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b border-neon-cyan/20 bg-cyber-dark/70 px-6 py-4">
                 <div className="flex items-center gap-3">
                   <Button onClick={handleBack} variant="ghost" size="sm">
@@ -149,11 +149,11 @@ export function ReviewPage() {
                 </div>
 
                 <div className="text-center">
-                  <h1 className="text-4xl md:text-5xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
+                  <h1 className="text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
                     AI Photobooth
                   </h1>
                   <p className="text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.4em]">
-                    Step 3 / 3
+                    Review Output
                   </p>
                 </div>
 
@@ -162,16 +162,16 @@ export function ReviewPage() {
                 </div>
               </header>
 
-              <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 gap-8">
+              <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 gap-6 min-h-0">
                 <div className="relative w-full max-w-5xl">
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20 glass-card px-8 py-3 rounded-none border border-neon-green">
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-20 glass-card px-6 py-2 rounded-none border border-neon-green">
                     <p className="text-neon-green text-base font-cyber font-semibold uppercase tracking-[0.2em] flex items-center gap-2">
                       <span className="text-xl">✨</span>
                       Portrait Generated Successfully
                     </p>
                   </div>
 
-                  <div className="relative aspect-video min-h-[420px]">
+                  <div className="relative aspect-video max-h-[55vh]">
                     <div className="relative h-full glass-card rounded-none border border-neon-cyan/60 overflow-hidden">
                       <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan z-10" />
                       <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan z-10" />

@@ -1,17 +1,18 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CameraPreview } from '@/features/capture-photo/ui/CameraPreview';
 import { ShutterButton } from '@/features/capture-photo/ui/ShutterButton';
 import { useCaptureStore } from '@/features/capture-photo/model/capture-store';
-import { captureImageFromVideo } from '@/features/capture-photo/lib/camera-utils';
+import { captureImageFromVideo, stopCameraStream } from '@/features/capture-photo/lib/camera-utils';
 import { Button } from '@/shared/ui/Button';
 
 export function CapturePage() {
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
+  const [cameraKey, setCameraKey] = useState(0);
   const { blob, previewUrl, setCapture, clearCapture, setError } = useCaptureStore();
 
   const handleCapture = async () => {
@@ -32,6 +33,7 @@ export function CapturePage() {
 
   const handleRetake = () => {
     clearCapture();
+    setCameraKey((key) => key + 1);
   };
 
   const handleNext = () => {
@@ -42,32 +44,40 @@ export function CapturePage() {
 
   const handleStreamReady = (mediaStream: MediaStream) => {
     setStream(mediaStream);
-    const video = document.querySelector('video');
-    if (video) {
-      videoRef.current = video;
-    }
   };
 
+  const handleVideoReady = (videoElement: HTMLVideoElement) => {
+    videoRef.current = videoElement;
+  };
+
+  useEffect(() => {
+    if (previewUrl && stream) {
+      stopCameraStream(stream);
+      setStream(null);
+      videoRef.current = null;
+    }
+  }, [previewUrl, stream]);
+
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative h-screen overflow-hidden">
       <div className="fixed inset-0 bg-cyber-darker">
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-6 md:py-10">
+      <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
         <div className="w-full max-w-6xl">
           <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-            <div className="relative flex flex-col min-h-[80vh]">
-              <header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b border-neon-cyan/20 bg-cyber-dark/70 px-6 py-4">
+            <div className="relative flex flex-col h-full min-h-0">
+              <header className="flex items-center justify-between border-b border-neon-cyan/20 bg-cyber-dark/70 px-6 py-3">
                 <div className="flex items-center gap-3 text-neon-cyan/70 text-xs font-mono uppercase tracking-[0.25em]">
                   <div className="w-2 h-2 bg-neon-green animate-pulse" />
-                  <span>Step 1 / 3</span>
+                  <span>Live Capture</span>
                 </div>
 
                 <div className="text-center">
-                  <h1 className="text-4xl md:text-5xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
+                  <h1 className="text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
                     AI Photobooth
                   </h1>
                   <p className="text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.5em]">
@@ -81,7 +91,7 @@ export function CapturePage() {
                 </div>
               </header>
 
-              <div className="flex-1 flex flex-col px-6 py-8 gap-8">
+              <div className="flex-1 flex flex-col px-6 py-5 gap-6 min-h-0">
                 <div className="flex flex-col items-center gap-3 text-center">
                   <p className="text-neon-cyan text-sm font-mono uppercase tracking-[0.3em] flex items-center gap-2">
                     <span className="text-lg">📸</span>
@@ -92,9 +102,9 @@ export function CapturePage() {
                   </p>
                 </div>
 
-                <div className="flex-1 flex items-center justify-center">
-                  <div className="relative w-full max-w-4xl">
-                    <div className="relative aspect-video min-h-[420px]">
+                <div className="flex-1 flex items-center justify-center min-h-0">
+                  <div className="relative w-full max-w-4xl h-full">
+                    <div className="relative aspect-video max-h-[55vh] w-full mx-auto">
                       <div className="relative h-full glass-card rounded-none border-2 border-neon-cyan/60 overflow-hidden">
                         <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan z-10" />
                         <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan z-10" />
@@ -118,7 +128,12 @@ export function CapturePage() {
                               </div>
                             </div>
                           ) : (
-                            <CameraPreview onStreamReady={handleStreamReady} onError={setError} />
+                            <CameraPreview
+                              key={cameraKey}
+                              onStreamReady={handleStreamReady}
+                              onVideoReady={handleVideoReady}
+                              onError={setError}
+                            />
                           )}
                         </div>
                       </div>
@@ -126,7 +141,7 @@ export function CapturePage() {
                   </div>
                 </div>
 
-                <div className="flex justify-center items-center gap-6">
+                <div className="flex justify-center items-center gap-6 pb-2">
                   {previewUrl ? (
                     <div className="flex flex-col items-center gap-4">
                       <div className="flex flex-col md:flex-row gap-4">

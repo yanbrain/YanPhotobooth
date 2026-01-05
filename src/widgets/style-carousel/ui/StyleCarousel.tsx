@@ -38,7 +38,7 @@ export function StyleCarousel({
   useEffect(() => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      const cardWidth = 320 + 32; // card width + gap
+      const cardWidth = 288 + 24; // card width + gap
       container.scrollTo({
         left: currentIndex * cardWidth,
         behavior: 'smooth',
@@ -50,12 +50,12 @@ export function StyleCarousel({
     <div className="relative w-full">
       <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-      <div className="relative flex items-center gap-6">
+      <div className="relative flex items-center gap-4">
         <button
           onClick={handlePrevious}
           disabled={!canScrollLeft}
           className={`
-            group relative flex-shrink-0 w-20 h-20 rounded-none border
+            group relative flex-shrink-0 w-16 h-16 rounded-none border
             transition-all duration-300 transform
             ${
               canScrollLeft
@@ -91,9 +91,9 @@ export function StyleCarousel({
 
           <div
             ref={scrollContainerRef}
-            className="overflow-hidden"
+            className="overflow-visible"
           >
-            <div className="flex gap-8 px-4">
+            <div className="flex gap-6 px-2 py-6">
               {styles.map((style) => (
                 <StyleCard
                   key={style.id}
@@ -110,7 +110,7 @@ export function StyleCarousel({
           onClick={handleNext}
           disabled={!canScrollRight}
           className={`
-            group relative flex-shrink-0 w-20 h-20 rounded-none border
+            group relative flex-shrink-0 w-16 h-16 rounded-none border
             transition-all duration-300 transform
             ${
               canScrollRight
