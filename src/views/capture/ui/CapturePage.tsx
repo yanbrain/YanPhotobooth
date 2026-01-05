@@ -84,8 +84,8 @@ export function CapturePage() {
 
               <div className="flex-1 flex flex-col px-4 sm:px-6 py-3 sm:py-4 gap-4 sm:gap-5 min-h-0">
                 <div className="flex-1 flex items-center justify-center min-h-0">
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <div className="relative aspect-video w-full h-full mx-auto">
+                  <div className="relative w-full flex items-center justify-center">
+                    <div className="relative w-full max-w-5xl aspect-video mx-auto min-h-[240px] sm:min-h-[360px] lg:min-h-[480px] bg-black/80">
                       <div className="relative h-full glass-card rounded-none border-2 border-neon-cyan/60 overflow-hidden">
                         <div className="absolute inset-0">
                           {previewUrl ? (
