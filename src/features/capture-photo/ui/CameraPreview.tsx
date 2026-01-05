@@ -35,7 +35,7 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
           onVideoReady?.(video);
 
           const markReady = async () => {
-            console.log('✅ Video stream ready', {
+            console.log('Video stream ready', {
               videoWidth: video.videoWidth,
               videoHeight: video.videoHeight,
               readyState: video.readyState
@@ -43,7 +43,7 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
             try {
               await video.play();
             } catch (playError) {
-              console.warn('⚠️ Unable to autoplay camera feed', playError);
+              console.warn('Unable to autoplay camera feed', playError);
             }
             setIsReady(true);
             setIsLoading(false);
@@ -64,13 +64,13 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
             }, 600);
           }
 
-          console.log('✅ Camera stream set to video element', {
+          console.log('Camera stream set to video element', {
             streamActive: mediaStream.active,
             trackCount: mediaStream.getVideoTracks().length,
             trackSettings: mediaStream.getVideoTracks()[0]?.getSettings()
           });
         } else {
-          console.error('❌ Video ref is null!');
+          console.error('Video ref is null!');
         }
         onStreamReady?.(mediaStream);
       } catch (err) {
@@ -99,8 +99,6 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
         <div className="absolute inset-0 cyber-grid opacity-15" />
 
         <div className="relative text-center p-8 z-10">
-          <div className="mb-6 text-5xl">⚠️</div>
-
           <p className="text-cyber-pink text-xl mb-2 font-cyber font-semibold neon-text">
             Camera Access Error
           </p>
@@ -121,10 +119,6 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
           </button>
         </div>
 
-        <div className="absolute top-2 left-2 w-6 h-6 border-t border-l border-cyber-pink" />
-        <div className="absolute top-2 right-2 w-6 h-6 border-t border-r border-cyber-pink" />
-        <div className="absolute bottom-2 left-2 w-6 h-6 border-b border-l border-cyber-pink" />
-        <div className="absolute bottom-2 right-2 w-6 h-6 border-b border-r border-cyber-pink" />
       </div>
     );
   }
@@ -155,24 +149,7 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
               <p className="text-neon-cyan/50 text-[11px] font-mono">
                 The browser permission prompt must be accepted to continue.
               </p>
-              <div className="flex justify-center gap-2">
-                <div className="w-2 h-2 bg-neon-cyan animate-pulse" style={{ animationDelay: '0ms' }} />
-                <div className="w-2 h-2 bg-neon-cyan animate-pulse" style={{ animationDelay: '200ms' }} />
-                <div className="w-2 h-2 bg-neon-cyan animate-pulse" style={{ animationDelay: '400ms' }} />
-              </div>
             </div>
-          </div>
-        )}
-
-        <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
-        <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
-        <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
-        <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-10 group-hover:h-10" style={{ zIndex: 15 }} />
-
-        {!isLoading && isReady && (
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 glass-card rounded-none border border-neon-cyan/30" style={{ zIndex: 25 }}>
-            <div className="w-2 h-2 bg-neon-green animate-pulse shadow-neon-cyan" />
-            <span className="text-neon-cyan text-xs font-mono uppercase tracking-[0.2em]">Live</span>
           </div>
         )}
       </div>

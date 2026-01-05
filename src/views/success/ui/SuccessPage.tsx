@@ -55,21 +55,6 @@ export function SuccessPage() {
                 </p>
               </div>
 
-              <div className="relative">
-                <div className="absolute inset-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 border border-neon-cyan/30 animate-spin" style={{ animationDuration: '8s' }} />
-                <div className="absolute inset-2 sm:inset-3 md:inset-4 border border-neon-purple" />
-                <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 border-2 border-neon-cyan flex items-center justify-center shadow-neon-cyan">
-                  <span className="text-5xl sm:text-6xl md:text-7xl drop-shadow-[0_0_12px_rgba(0,229,255,0.6)]">
-                    {action === 'email' ? '📧' : action === 'print' ? '🖨️' : '✓'}
-                  </span>
-
-                  <div className="absolute top-2 left-2 w-5 h-5 border-t-2 border-l-2 border-neon-cyan" />
-                  <div className="absolute top-2 right-2 w-5 h-5 border-t-2 border-r-2 border-neon-cyan" />
-                  <div className="absolute bottom-2 left-2 w-5 h-5 border-b-2 border-l-2 border-neon-cyan" />
-                  <div className="absolute bottom-2 right-2 w-5 h-5 border-b-2 border-r-2 border-neon-cyan" />
-                </div>
-              </div>
-
               <div className="text-center space-y-4">
                 <div className="glass-card px-8 py-4 rounded-none border border-neon-cyan/40 max-w-2xl mx-auto">
                   <p className="text-white text-base sm:text-lg md:text-xl font-mono">
@@ -100,35 +85,14 @@ export function SuccessPage() {
                   size="lg"
                   className="w-full sm:min-w-80 sm:w-auto py-4 sm:py-6 text-base sm:text-xl"
                 >
-                  <span className="flex items-center gap-3">
-                    <span>🎨</span>
-                    <span>Create Another Portrait</span>
-                  </span>
+                  Create Another Portrait
                 </Button>
 
                 <p className="text-neon-cyan/50 text-xs sm:text-sm font-mono">
                   Ready to create another masterpiece?
                 </p>
               </div>
-
-              <div className="absolute top-6 left-6 glass-card px-4 py-2 rounded-none border border-neon-cyan/30 hidden md:block">
-                <p className="text-neon-cyan text-xs font-mono uppercase tracking-[0.2em]">
-                  Status: Archived
-                </p>
-              </div>
-
-              <div className="absolute top-6 right-6 glass-card px-4 py-2 rounded-none border border-neon-green/30 hidden md:block">
-                <p className="text-neon-green text-xs font-mono uppercase tracking-[0.2em] flex items-center gap-2">
-                  <span className="w-2 h-2 bg-neon-green animate-pulse" />
-                  Success
-                </p>
-              </div>
             </div>
-
-            <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-neon-cyan/70" />
-            <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-neon-cyan/70" />
-            <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-neon-cyan/70" />
-            <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-neon-cyan/70" />
           </div>
         </div>
       </div>

@@ -53,53 +53,15 @@ export function NetworkStatus() {
         <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
         <div className="relative flex items-center gap-3">
-          <div
-            className={`
-              w-3 h-3 rounded-sm
-              ${isOnline ? 'bg-neon-green animate-pulse' : 'bg-cyber-pink'}
-            `}
-          />
-
           <p
             className={`
               font-cyber font-semibold text-sm uppercase tracking-[0.2em]
               ${isOnline ? 'text-neon-green' : 'text-cyber-pink'}
             `}
           >
-            {isOnline ? (
-              <span className="flex items-center gap-2">
-                <span>✓</span>
-                Connection Restored
-              </span>
-            ) : (
-              <span className="flex items-center gap-2">
-                <span>⚠</span>
-                No Internet Connection
-              </span>
-            )}
+            {isOnline ? 'Connection Restored' : 'No Internet Connection'}
           </p>
         </div>
-
-        <div
-          className={`absolute top-1 left-1 w-4 h-4 border-t border-l ${
-            isOnline ? 'border-neon-green' : 'border-cyber-pink'
-          }`}
-        />
-        <div
-          className={`absolute top-1 right-1 w-4 h-4 border-t border-r ${
-            isOnline ? 'border-neon-green' : 'border-cyber-pink'
-          }`}
-        />
-        <div
-          className={`absolute bottom-1 left-1 w-4 h-4 border-b border-l ${
-            isOnline ? 'border-neon-green' : 'border-cyber-pink'
-          }`}
-        />
-        <div
-          className={`absolute bottom-1 right-1 w-4 h-4 border-b border-r ${
-            isOnline ? 'border-neon-green' : 'border-cyber-pink'
-          }`}
-        />
       </div>
     </div>
   );

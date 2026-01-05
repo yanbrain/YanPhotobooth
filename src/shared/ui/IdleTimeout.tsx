@@ -98,8 +98,6 @@ export function IdleTimeout({
       title="Are you still there?"
     >
       <div className="text-center space-y-6">
-        <div className="text-5xl">⏱️</div>
-
         <div className="space-y-3">
           <p className="text-white text-lg font-mono">
             Your session will reset in <span className="text-neon-cyan font-cyber font-semibold text-2xl">{countdown}</span> seconds due to inactivity
@@ -121,10 +119,7 @@ export function IdleTimeout({
 
         <div className="flex gap-4">
           <Button onClick={handleContinue} variant="primary" className="flex-1">
-            <span className="flex items-center justify-center gap-2">
-              <span>✓</span>
-              Continue Session
-            </span>
+            Continue Session
           </Button>
 
           <Button onClick={resetSession} variant="ghost" className="flex-1">

@@ -56,14 +56,14 @@ export function ShutterButton({ onClick, disabled = false }: ShutterButtonProps)
             ${!disabled && 'group-hover:border-neon-purple'}
           `}
         >
-          {!disabled && (
-            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent group-hover:rotate-180 transition-transform duration-500" />
-          )}
-
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-3xl drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">
-              📸
-            </span>
+            <div
+              className={`
+                w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full
+                ${disabled ? 'bg-gray-600' : 'bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.6)]'}
+                transition-all duration-300
+              `}
+            />
           </div>
         </div>
       </div>
@@ -72,14 +72,6 @@ export function ShutterButton({ onClick, disabled = false }: ShutterButtonProps)
         <div className="absolute inset-0 rounded-full bg-neon-cyan/10 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
       )}
 
-      {!disabled && (
-        <>
-          <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <div className="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-neon-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </>
-      )}
     </button>
   );
 }
