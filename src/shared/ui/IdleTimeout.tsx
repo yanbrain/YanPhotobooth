@@ -6,17 +6,14 @@ import { Modal } from './Modal';
 import { Button } from './Button';
 
 interface IdleTimeoutProps {
-  /** Timeout in milliseconds (default: 60 seconds) */
   timeout?: number;
-  /** Warning time before timeout in milliseconds (default: 15 seconds) */
   warningTime?: number;
-  /** Callback when session times out */
   onTimeout?: () => void;
 }
 
 export function IdleTimeout({
-  timeout = 60000, // 60 seconds
-  warningTime = 15000, // 15 seconds
+  timeout = 60000,
+  warningTime = 15000,
   onTimeout,
 }: IdleTimeoutProps) {
   const router = useRouter();
@@ -25,7 +22,6 @@ export function IdleTimeout({
   const [countdown, setCountdown] = useState(0);
 
   const resetSession = useCallback(() => {
-    // Don't reset on capture page (home)
     if (pathname === '/capture' || pathname === '/') {
       return;
     }
@@ -42,7 +38,6 @@ export function IdleTimeout({
   }, []);
 
   useEffect(() => {
-    // Don't run on capture page
     if (pathname === '/capture' || pathname === '/') {
       return;
     }
@@ -58,12 +53,10 @@ export function IdleTimeout({
       setShowWarning(false);
       setCountdown(0);
 
-      // Set warning timer
       warningTimeoutId = setTimeout(() => {
         setShowWarning(true);
         setCountdown(Math.floor(warningTime / 1000));
 
-        // Start countdown
         countdownInterval = setInterval(() => {
           setCountdown((prev) => {
             if (prev <= 1) {
@@ -75,20 +68,17 @@ export function IdleTimeout({
         }, 1000);
       }, timeout - warningTime);
 
-      // Set timeout timer
       timeoutId = setTimeout(() => {
         resetSession();
       }, timeout);
     };
 
-    // Events that reset the timer
     const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
 
     events.forEach((event) => {
       window.addEventListener(event, resetTimers);
     });
 
-    // Start initial timer
     resetTimers();
 
     return () => {
@@ -108,13 +98,11 @@ export function IdleTimeout({
       title="Are you still there?"
     >
       <div className="text-center space-y-6">
-        {/* Icon */}
-        <div className="text-6xl animate-pulse-neon">⏱️</div>
+        <div className="text-5xl">⏱️</div>
 
-        {/* Message */}
         <div className="space-y-3">
           <p className="text-white text-lg font-mono">
-            Your session will reset in <span className="text-neon-cyan font-cyber font-bold text-2xl">{countdown}</span> seconds due to inactivity
+            Your session will reset in <span className="text-neon-cyan font-cyber font-semibold text-2xl">{countdown}</span> seconds due to inactivity
           </p>
 
           <p className="text-neon-cyan/60 text-sm font-mono">
@@ -122,17 +110,15 @@ export function IdleTimeout({
           </p>
         </div>
 
-        {/* Countdown progress bar */}
-        <div className="w-full h-2 bg-cyber-dark/60 rounded-full border border-neon-cyan/30 overflow-hidden">
+        <div className="w-full h-2 bg-cyber-dark border border-neon-cyan/30 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-neon-cyan to-cyber-pink transition-all duration-1000 ease-linear"
+            className="h-full bg-neon-cyan/80 transition-all duration-1000 ease-linear"
             style={{
               width: `${(countdown / (warningTime / 1000)) * 100}%`,
             }}
           />
         </div>
 
-        {/* Action buttons */}
         <div className="flex gap-4">
           <Button onClick={handleContinue} variant="primary" className="flex-1">
             <span className="flex items-center justify-center gap-2">

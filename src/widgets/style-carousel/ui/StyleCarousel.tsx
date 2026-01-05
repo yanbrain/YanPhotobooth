@@ -48,27 +48,23 @@ export function StyleCarousel({
 
   return (
     <div className="relative w-full">
-      {/* Cyber grid background glow */}
-      <div className="absolute inset-0 cyber-grid opacity-5 pointer-events-none" />
+      <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-      {/* Carousel container */}
       <div className="relative flex items-center gap-6">
-        {/* Left navigation button */}
         <button
           onClick={handlePrevious}
           disabled={!canScrollLeft}
           className={`
-            group relative flex-shrink-0 w-20 h-20 rounded-xl
+            group relative flex-shrink-0 w-20 h-20 rounded-none border
             transition-all duration-300 transform
             ${
               canScrollLeft
-                ? 'glass-card border-2 border-neon-cyan/50 hover:border-neon-cyan hover:scale-110 hover:shadow-neon-cyan cursor-pointer'
-                : 'bg-cyber-dark/20 border-2 border-neon-cyan/10 opacity-20 cursor-not-allowed'
+                ? 'glass-card border-neon-cyan/50 hover:border-neon-cyan hover:scale-105 hover:shadow-neon-cyan cursor-pointer'
+                : 'bg-cyber-dark/20 border-neon-cyan/10 opacity-20 cursor-not-allowed'
             }
           `}
           aria-label="Previous style"
         >
-          {/* Corner brackets */}
           {canScrollLeft && (
             <>
               <div className="absolute top-1 left-1 w-3 h-3 border-t-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-4 group-hover:h-4" />
@@ -76,29 +72,23 @@ export function StyleCarousel({
             </>
           )}
 
-          {/* Arrow icon */}
           <div className={`
             absolute inset-0 flex items-center justify-center text-4xl font-bold
-            ${canScrollLeft ? 'text-neon-cyan group-hover:animate-pulse-neon' : 'text-gray-600'}
+            ${canScrollLeft ? 'text-neon-cyan' : 'text-gray-600'}
           `}>
             ‹
           </div>
 
-          {/* Glow effect on hover */}
           {canScrollLeft && (
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-neon-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           )}
         </button>
 
-        {/* Styles scroll container with fade edges */}
         <div className="relative flex-1">
-          {/* Left fade edge */}
           <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-cyber-darker via-cyber-darker/80 to-transparent z-10 pointer-events-none" />
 
-          {/* Right fade edge */}
           <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-cyber-darker via-cyber-darker/80 to-transparent z-10 pointer-events-none" />
 
-          {/* Scrollable container */}
           <div
             ref={scrollContainerRef}
             className="overflow-hidden"
@@ -116,22 +106,20 @@ export function StyleCarousel({
           </div>
         </div>
 
-        {/* Right navigation button */}
         <button
           onClick={handleNext}
           disabled={!canScrollRight}
           className={`
-            group relative flex-shrink-0 w-20 h-20 rounded-xl
+            group relative flex-shrink-0 w-20 h-20 rounded-none border
             transition-all duration-300 transform
             ${
               canScrollRight
-                ? 'glass-card border-2 border-neon-cyan/50 hover:border-neon-cyan hover:scale-110 hover:shadow-neon-cyan cursor-pointer'
-                : 'bg-cyber-dark/20 border-2 border-neon-cyan/10 opacity-20 cursor-not-allowed'
+                ? 'glass-card border-neon-cyan/50 hover:border-neon-cyan hover:scale-105 hover:shadow-neon-cyan cursor-pointer'
+                : 'bg-cyber-dark/20 border-neon-cyan/10 opacity-20 cursor-not-allowed'
             }
           `}
           aria-label="Next style"
         >
-          {/* Corner brackets */}
           {canScrollRight && (
             <>
               <div className="absolute top-1 right-1 w-3 h-3 border-t-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-4 group-hover:h-4" />
@@ -139,22 +127,19 @@ export function StyleCarousel({
             </>
           )}
 
-          {/* Arrow icon */}
           <div className={`
             absolute inset-0 flex items-center justify-center text-4xl font-bold
-            ${canScrollRight ? 'text-neon-cyan group-hover:animate-pulse-neon' : 'text-gray-600'}
+            ${canScrollRight ? 'text-neon-cyan' : 'text-gray-600'}
           `}>
             ›
           </div>
 
-          {/* Glow effect on hover */}
           {canScrollRight && (
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-l from-neon-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-l from-neon-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           )}
         </button>
       </div>
 
-      {/* Navigation dots indicator */}
       <div className="flex justify-center gap-3 mt-8">
         {styles.map((_, index) => (
           <button
@@ -164,8 +149,8 @@ export function StyleCarousel({
               relative transition-all duration-300
               ${
                 index === currentIndex
-                  ? 'w-12 h-2 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-full shadow-neon-cyan'
-                  : 'w-2 h-2 bg-neon-cyan/30 rounded-full hover:bg-neon-cyan/60'
+                  ? 'w-12 h-2 bg-neon-cyan/80 shadow-neon-cyan'
+                  : 'w-2 h-2 bg-neon-cyan/30 hover:bg-neon-cyan/60'
               }
             `}
             aria-label={`Go to style ${index + 1}`}

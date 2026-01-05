@@ -37,23 +37,18 @@ export function EmailModal({ isOpen, onClose, onSubmit, isSending }: EmailModalP
   return (
     <Modal isOpen={isOpen} onClose={handleClose} title="Email Your Masterpiece">
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Email input section */}
         <div className="space-y-3">
           <label
             htmlFor="email"
-            className="block text-neon-cyan text-sm font-cyber font-bold uppercase tracking-wider"
+            className="block text-neon-cyan text-sm font-cyber font-semibold uppercase tracking-[0.2em]"
           >
             📧 Email Address
           </label>
 
-          {/* Cyberpunk input field */}
           <div className="relative">
-            {/* Input container with glass effect */}
-            <div className="relative glass-card rounded-xl border-2 border-neon-cyan/40 overflow-hidden group focus-within:border-neon-cyan transition-all duration-300">
-              {/* Cyber grid background */}
-              <div className="absolute inset-0 cyber-grid opacity-5 pointer-events-none" />
+            <div className="relative glass-card rounded-none border border-neon-cyan/40 overflow-hidden group focus-within:border-neon-cyan transition-all duration-300">
+              <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-              {/* Input field */}
               <input
                 type="email"
                 id="email"
@@ -73,28 +68,24 @@ export function EmailModal({ isOpen, onClose, onSubmit, isSending }: EmailModalP
                 autoFocus
               />
 
-              {/* Decorative corner brackets */}
-              <div className="absolute top-1 left-1 w-4 h-4 border-t-2 border-l-2 border-neon-cyan/60 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
-              <div className="absolute top-1 right-1 w-4 h-4 border-t-2 border-r-2 border-neon-cyan/60 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-1 left-1 w-4 h-4 border-b-2 border-l-2 border-neon-cyan/60 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-1 right-1 w-4 h-4 border-b-2 border-r-2 border-neon-cyan/60 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-1 left-1 w-4 h-4 border-t border-l border-neon-cyan/60 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-1 right-1 w-4 h-4 border-t border-r border-neon-cyan/60 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-1 left-1 w-4 h-4 border-b border-l border-neon-cyan/60 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-1 right-1 w-4 h-4 border-b border-r border-neon-cyan/60 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
 
-              {/* Glow effect on focus */}
               <div className="absolute inset-0 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300">
-                <div className="absolute inset-0 rounded-xl shadow-neon-cyan blur-sm" />
+                <div className="absolute inset-0 shadow-neon-cyan" />
               </div>
             </div>
 
-            {/* Error message */}
             {error && (
-              <div className="flex items-center gap-2 mt-2 text-cyber-pink animate-pulse-neon">
+              <div className="flex items-center gap-2 mt-2 text-cyber-pink">
                 <span className="text-sm">⚠️</span>
                 <p className="text-sm font-mono">{error}</p>
               </div>
             )}
           </div>
 
-          {/* Helper text */}
           {!error && (
             <p className="text-neon-cyan/60 text-xs font-mono">
               We'll send your AI-generated portrait to this address
@@ -102,7 +93,6 @@ export function EmailModal({ isOpen, onClose, onSubmit, isSending }: EmailModalP
           )}
         </div>
 
-        {/* Action buttons */}
         <div className="flex gap-4 pt-2">
           <Button
             type="button"

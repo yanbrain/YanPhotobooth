@@ -17,10 +17,8 @@ export function NetworkStatus() {
       setShowOffline(true);
     };
 
-    // Set initial state
     setIsOnline(navigator.onLine);
 
-    // Listen for online/offline events
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
 
@@ -30,7 +28,6 @@ export function NetworkStatus() {
     };
   }, []);
 
-  // Don't show anything if online
   if (isOnline && !showOffline) return null;
 
   return (
@@ -45,31 +42,27 @@ export function NetworkStatus() {
     >
       <div
         className={`
-          glass-card rounded-2xl border-2 px-6 py-4
+          glass-card rounded-none border px-6 py-4
           ${
             isOnline
-              ? 'border-neon-green shadow-[0_0_20px_rgba(0,255,159,0.4)]'
-              : 'border-cyber-pink shadow-[0_0_20px_rgba(255,0,110,0.4)]'
+              ? 'border-neon-green shadow-[0_0_12px_rgba(57,255,176,0.35)]'
+              : 'border-cyber-pink shadow-[0_0_12px_rgba(255,79,122,0.35)]'
           }
         `}
       >
-        {/* Cyber grid background */}
-        <div className="absolute inset-0 cyber-grid opacity-5 rounded-2xl pointer-events-none" />
+        <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-        {/* Content */}
         <div className="relative flex items-center gap-3">
-          {/* Status indicator */}
           <div
             className={`
-              w-3 h-3 rounded-full
+              w-3 h-3 rounded-sm
               ${isOnline ? 'bg-neon-green animate-pulse' : 'bg-cyber-pink'}
             `}
           />
 
-          {/* Message */}
           <p
             className={`
-              font-cyber font-bold text-sm uppercase tracking-wider
+              font-cyber font-semibold text-sm uppercase tracking-[0.2em]
               ${isOnline ? 'text-neon-green' : 'text-cyber-pink'}
             `}
           >
@@ -87,24 +80,23 @@ export function NetworkStatus() {
           </p>
         </div>
 
-        {/* Corner brackets */}
         <div
-          className={`absolute top-1 left-1 w-4 h-4 border-t-2 border-l-2 ${
+          className={`absolute top-1 left-1 w-4 h-4 border-t border-l ${
             isOnline ? 'border-neon-green' : 'border-cyber-pink'
           }`}
         />
         <div
-          className={`absolute top-1 right-1 w-4 h-4 border-t-2 border-r-2 ${
+          className={`absolute top-1 right-1 w-4 h-4 border-t border-r ${
             isOnline ? 'border-neon-green' : 'border-cyber-pink'
           }`}
         />
         <div
-          className={`absolute bottom-1 left-1 w-4 h-4 border-b-2 border-l-2 ${
+          className={`absolute bottom-1 left-1 w-4 h-4 border-b border-l ${
             isOnline ? 'border-neon-green' : 'border-cyber-pink'
           }`}
         />
         <div
-          className={`absolute bottom-1 right-1 w-4 h-4 border-b-2 border-r-2 ${
+          className={`absolute bottom-1 right-1 w-4 h-4 border-b border-r ${
             isOnline ? 'border-neon-green' : 'border-cyber-pink'
           }`}
         />

@@ -52,49 +52,44 @@ export function Toast({ id, type, message, duration = 5000, onDismiss }: ToastPr
   const getShadow = () => {
     switch (type) {
       case 'success':
-        return 'shadow-[0_0_20px_rgba(0,255,159,0.4)]';
+        return 'shadow-[0_0_12px_rgba(57,255,176,0.35)]';
       case 'error':
-        return 'shadow-[0_0_20px_rgba(255,0,110,0.4)]';
+        return 'shadow-[0_0_12px_rgba(255,79,122,0.35)]';
       case 'warning':
-        return 'shadow-[0_0_20px_rgba(255,190,11,0.4)]';
+        return 'shadow-[0_0_12px_rgba(245,197,66,0.35)]';
       case 'info':
-        return 'shadow-[0_0_20px_rgba(0,240,255,0.4)]';
+        return 'shadow-[0_0_12px_rgba(0,229,255,0.35)]';
     }
   };
 
   return (
     <div
       className={`
-        relative glass-card rounded-xl border-2 ${getColors()} ${getShadow()}
+        relative glass-card rounded-none border ${getColors()} ${getShadow()}
         p-4 pr-12 min-w-80 max-w-md
         animate-[slideIn_0.3s_ease-out]
       `}
       role="alert"
       aria-live="polite"
     >
-      {/* Cyber grid background */}
-      <div className="absolute inset-0 cyber-grid opacity-5 rounded-xl pointer-events-none" />
+      <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-      {/* Content */}
       <div className="relative flex items-start gap-3">
-        {/* Icon */}
-        <div className={`text-2xl animate-pulse-neon`}>
+        <div className="text-2xl">
           {getIcon()}
         </div>
 
-        {/* Message */}
         <p className="flex-1 text-white text-sm font-mono leading-relaxed pt-1">
           {message}
         </p>
 
-        {/* Close button */}
         <button
           onClick={() => onDismiss(id)}
           className={`
-            absolute -top-2 -right-2 w-8 h-8 rounded-lg
-            bg-cyber-dark border-2 ${getColors()}
+            absolute -top-2 -right-2 w-8 h-8
+            bg-cyber-dark border ${getColors()}
             flex items-center justify-center
-            hover:scale-110 transition-transform duration-200
+            hover:scale-105 transition-transform duration-200
             group
           `}
           aria-label="Dismiss notification"
@@ -105,13 +100,11 @@ export function Toast({ id, type, message, duration = 5000, onDismiss }: ToastPr
         </button>
       </div>
 
-      {/* Corner brackets */}
-      <div className={`absolute bottom-1 left-1 w-3 h-3 border-b-2 border-l-2 ${getColors()} opacity-60`} />
-      <div className={`absolute bottom-1 right-1 w-3 h-3 border-b-2 border-r-2 ${getColors()} opacity-60`} />
+      <div className={`absolute bottom-1 left-1 w-3 h-3 border-b border-l ${getColors()} opacity-60`} />
+      <div className={`absolute bottom-1 right-1 w-3 h-3 border-b border-r ${getColors()} opacity-60`} />
 
-      {/* Progress bar */}
       {duration > 0 && (
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-cyber-dark/50 rounded-b-xl overflow-hidden">
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-cyber-dark/60 overflow-hidden">
           <div
             className={`h-full bg-gradient-to-r ${
               type === 'success' ? 'from-neon-green to-neon-cyan' :

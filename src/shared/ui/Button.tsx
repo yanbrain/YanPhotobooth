@@ -19,41 +19,33 @@ export function Button({
   className = '',
   type = 'button',
 }: ButtonProps) {
-  const baseStyles = 'font-cyber font-bold uppercase tracking-widest transition-all duration-300 relative overflow-hidden group';
+  const baseStyles = 'font-cyber font-semibold uppercase tracking-[0.2em] transition-all duration-200 relative overflow-hidden group border';
 
   const variantStyles = {
     primary: `
-      bg-gradient-to-r from-neon-cyan via-cyber-blue to-neon-purple
-      text-cyber-darker shadow-neon-cyan
-      hover:shadow-neon-purple hover:scale-105
-      before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
-      before:translate-x-[-200%] before:transition-transform before:duration-700
-      hover:before:translate-x-[200%]
+      bg-cyber-dark text-neon-cyan border-neon-cyan/70
+      shadow-neon-cyan hover:border-neon-cyan hover:text-white
+      before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-neon-cyan/60
     `,
     secondary: `
-      bg-gradient-to-r from-neon-purple via-neon-pink to-cyber-pink
-      text-white shadow-neon-pink
-      hover:shadow-neon-purple hover:scale-105
-      before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
-      before:translate-x-[-200%] before:transition-transform before:duration-700
-      hover:before:translate-x-[200%]
+      bg-cyber-dark text-neon-purple border-neon-purple/70
+      shadow-neon-purple hover:border-neon-purple hover:text-white
+      before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-neon-purple/60
     `,
     outline: `
-      border-2 border-neon-cyan text-neon-cyan bg-transparent
-      hover:bg-neon-cyan/10 hover:shadow-neon-cyan
-      hover:text-white hover:border-neon-purple
+      bg-transparent border-neon-cyan/60 text-neon-cyan
+      hover:border-neon-cyan hover:text-white hover:shadow-neon-cyan
     `,
     ghost: `
-      bg-cyber-dark/50 backdrop-blur-sm border border-neon-cyan/30
-      text-neon-cyan hover:bg-neon-cyan/20
-      hover:border-neon-cyan hover:shadow-glass
+      bg-cyber-dark/60 border-neon-cyan/30
+      text-neon-cyan/80 hover:border-neon-cyan hover:text-neon-cyan
     `,
   };
 
   const sizeStyles = {
-    sm: 'px-6 py-2 text-xs rounded',
-    md: 'px-10 py-3 text-sm rounded-lg',
-    lg: 'px-14 py-4 text-base rounded-xl',
+    sm: 'px-5 py-2 text-xs rounded-none',
+    md: 'px-8 py-3 text-sm rounded-none',
+    lg: 'px-12 py-4 text-base rounded-none',
   };
 
   const disabledStyles = disabled

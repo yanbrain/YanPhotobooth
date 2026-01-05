@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&family=Share+Tech+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,19 +15,21 @@ body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  background: #050816;
-  color: #00f0ff;
+  background: #070a0f;
+  color: #c9f8ff;
 }
 
 body {
-  font-family: 'Orbitron', monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Oxanium', 'Share Tech Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
-  background: linear-gradient(135deg, #050816 0%, #0a0e27 50%, #050816 100%);
+  background:
+    radial-gradient(circle at top right, rgba(0, 229, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 20% 20%, rgba(124, 108, 255, 0.18), transparent 45%),
+    linear-gradient(180deg, #070a0f 0%, #0b1118 55%, #070a0f 100%);
 }
 
-/* CRT Scanline Effect */
 body::before {
   content: '';
   position: fixed;
@@ -35,17 +37,15 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    rgba(0, 240, 255, 0.03) 50%,
-    rgba(0, 0, 0, 0.1) 50%
-  );
-  background-size: 100% 4px;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+  background-size: 120px 120px;
   pointer-events: none;
-  z-index: 9999;
-  animation: scanline 8s linear infinite;
+  z-index: 1;
+  opacity: 0.35;
 }
 
-/* Vignette Effect */
 body::after {
   content: '';
   position: fixed;
@@ -56,31 +56,28 @@ body::after {
   background: radial-gradient(
     circle at center,
     transparent 0%,
-    rgba(0, 0, 0, 0.4) 100%
+    rgba(2, 5, 9, 0.65) 100%
   );
   pointer-events: none;
-  z-index: 9998;
+  z-index: 2;
 }
 
 @layer components {
-  /* Glassmorphism Card */
   .glass-card {
-    background: rgba(10, 14, 39, 0.4);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.1);
+    background: rgba(9, 16, 24, 0.92);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 229, 255, 0.08),
+      0 0 24px rgba(0, 229, 255, 0.15);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
   }
 
-  /* Neon Text Effect */
   .neon-text {
     text-shadow:
-      0 0 7px #00f0ff,
-      0 0 10px #00f0ff,
-      0 0 21px #00f0ff,
-      0 0 42px #00f0ff;
+      0 0 8px rgba(0, 229, 255, 0.4),
+      0 0 16px rgba(0, 229, 255, 0.2);
   }
 
-  /* Glitch Text Effect */
   .glitch-text {
     position: relative;
     animation: glitch 1s linear infinite;
@@ -105,32 +102,27 @@ body::after {
     -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
   }
 
-  /* Cyber Grid Background */
   .cyber-grid {
     background-image:
-      linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
+      linear-gradient(rgba(0, 229, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, 0.08) 1px, transparent 1px);
+    background-size: 80px 80px;
   }
 
-  /* Neon Border Glow */
   .neon-border {
-    border: 2px solid #00f0ff;
+    border: 1px solid rgba(0, 229, 255, 0.6);
     box-shadow:
-      0 0 5px #00f0ff,
-      inset 0 0 5px #00f0ff,
-      0 0 10px #00f0ff;
+      0 0 12px rgba(0, 229, 255, 0.2),
+      inset 0 0 12px rgba(0, 229, 255, 0.08);
   }
 
-  /* Holographic Effect */
   .holographic {
     background: linear-gradient(
       45deg,
-      #00f0ff 0%,
-      #9d00ff 25%,
-      #ff00ff 50%,
-      #9d00ff 75%,
-      #00f0ff 100%
+      rgba(0, 229, 255, 0.25) 0%,
+      rgba(124, 108, 255, 0.35) 35%,
+      rgba(255, 79, 122, 0.35) 70%,
+      rgba(0, 229, 255, 0.25) 100%
     );
     background-size: 300% 300%;
     animation: gradient-shift 3s ease infinite;
@@ -179,7 +171,6 @@ body::after {
   }
 }
 
-/* Data Stream Effect */
 .data-stream {
   position: relative;
   overflow: hidden;
@@ -193,7 +184,7 @@ body::after {
   width: 100%;
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.6rem;
-  color: rgba(0, 240, 255, 0.15);
+  color: rgba(0, 229, 255, 0.2);
   white-space: nowrap;
   animation: dataScroll 20s linear infinite;
   pointer-events: none;
@@ -208,7 +199,6 @@ body::after {
   }
 }
 
-/* Matrix Rain Effect (subtle) */
 .matrix-bg::before {
   content: '0 1';
   position: absolute;
@@ -218,7 +208,7 @@ body::after {
   height: 200%;
   font-family: 'Share Tech Mono', monospace;
   font-size: 1rem;
-  color: rgba(0, 240, 255, 0.1);
+  color: rgba(0, 229, 255, 0.12);
   word-spacing: 1rem;
   line-height: 1.5;
   animation: matrixFall 15s linear infinite;
@@ -235,17 +225,15 @@ body::after {
   }
 }
 
-/* Enhanced Button Pulse */
 @keyframes buttonPulse {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
   }
   50% {
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.6), 0 0 40px rgba(157, 0, 255, 0.3);
+    box-shadow: 0 0 22px rgba(0, 229, 255, 0.45), 0 0 30px rgba(124, 108, 255, 0.25);
   }
 }
 
-/* Text Flicker */
 .text-flicker {
   animation: flicker 3s linear infinite;
 }
@@ -256,6 +244,15 @@ body::after {
   }
   20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
     opacity: 0.4;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
   }
 }
 
