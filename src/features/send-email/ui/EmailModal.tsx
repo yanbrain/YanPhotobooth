@@ -42,7 +42,7 @@ export function EmailModal({ isOpen, onClose, onSubmit, isSending }: EmailModalP
             htmlFor="email"
             className="block text-neon-cyan text-sm font-cyber font-semibold uppercase tracking-[0.2em]"
           >
-            📧 Email Address
+            Email Address
           </label>
 
           <div className="relative">
@@ -79,10 +79,7 @@ export function EmailModal({ isOpen, onClose, onSubmit, isSending }: EmailModalP
             </div>
 
             {error && (
-              <div className="flex items-center gap-2 mt-2 text-cyber-pink">
-                <span className="text-sm">⚠️</span>
-                <p className="text-sm font-mono">{error}</p>
-              </div>
+              <p className="mt-2 text-sm font-mono text-cyber-pink">{error}</p>
             )}
           </div>
 
@@ -109,15 +106,9 @@ export function EmailModal({ isOpen, onClose, onSubmit, isSending }: EmailModalP
             className="flex-1"
           >
             {isSending ? (
-              <span className="flex items-center justify-center gap-2">
-                <span className="animate-pulse">📤</span>
-                Sending...
-              </span>
+              'Sending...'
             ) : (
-              <span className="flex items-center justify-center gap-2">
-                <span>✨</span>
-                Send Portrait
-              </span>
+              'Send Portrait'
             )}
           </Button>
         </div>

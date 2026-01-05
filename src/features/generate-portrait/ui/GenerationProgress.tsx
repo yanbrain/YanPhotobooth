@@ -24,21 +24,6 @@ export function GenerationProgress({ progress, status }: GenerationProgressProps
     }
   };
 
-  const getIcon = () => {
-    switch (status) {
-      case 'queued':
-        return '⏳';
-      case 'running':
-        return '🎨';
-      case 'done':
-        return '✨';
-      case 'failed':
-        return '⚠️';
-      default:
-        return '⚙️';
-    }
-  };
-
   const getStatusColor = () => {
     switch (status) {
       case 'done':
@@ -57,10 +42,6 @@ export function GenerationProgress({ progress, status }: GenerationProgressProps
 
         <div className="relative space-y-6">
           <div className="text-center">
-            <div className={`text-6xl mb-4 ${status === 'running' ? 'animate-float' : ''}`}>
-              {getIcon()}
-            </div>
-
             <p className={`text-2xl font-cyber font-semibold ${getStatusColor()} neon-text mb-3 uppercase tracking-[0.2em]`}>
               {getMessage()}
             </p>
@@ -77,18 +58,12 @@ export function GenerationProgress({ progress, status }: GenerationProgressProps
             <ProgressBar progress={progress} showPercentage={false} />
           </div>
 
-          <div className="flex items-center justify-center gap-2 pt-2">
-            <div className={`w-2 h-2 ${status === 'running' ? 'bg-neon-cyan animate-pulse' : 'bg-neon-cyan/50'}`} />
+          <div className="flex items-center justify-center pt-2">
             <span className="text-sm font-mono text-neon-cyan/70 uppercase tracking-[0.2em]">
               {status}
             </span>
           </div>
         </div>
-
-        <div className="absolute top-2 left-2 w-6 h-6 border-t border-l border-neon-cyan/60" />
-        <div className="absolute top-2 right-2 w-6 h-6 border-t border-r border-neon-cyan/60" />
-        <div className="absolute bottom-2 left-2 w-6 h-6 border-b border-l border-neon-cyan/60" />
-        <div className="absolute bottom-2 right-2 w-6 h-6 border-b border-r border-neon-cyan/60" />
       </div>
     </div>
   );

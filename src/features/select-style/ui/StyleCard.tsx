@@ -26,18 +26,14 @@ export function StyleCard({ style, isSelected, onClick }: StyleCardProps) {
         <div className="absolute inset-0 cyber-grid opacity-15" />
 
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className={`
-            text-9xl transition-all duration-500
-            ${isSelected ? 'animate-float' : 'group-hover:scale-110'}
-          `}>
-            <span className="drop-shadow-[0_0_18px_rgba(0,229,255,0.6)]">🎨</span>
-          </div>
+          <div
+            className={`
+              w-20 h-20 sm:w-24 sm:h-24 rounded-full border
+              transition-all duration-500
+              ${isSelected ? 'border-neon-cyan shadow-neon-cyan' : 'border-neon-cyan/40 group-hover:border-neon-purple'}
+            `}
+          />
         </div>
-
-        <div className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-7 group-hover:h-7" />
-        <div className="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-7 group-hover:h-7" />
-        <div className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-neon-cyan transition-all duration-300 group-hover:w-7 group-hover:h-7" />
-        <div className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-7 group-hover:h-7" />
       </div>
 
       <div
@@ -59,12 +55,6 @@ export function StyleCard({ style, isSelected, onClick }: StyleCardProps) {
           {style.name}
         </h3>
       </div>
-
-      {isSelected && (
-        <div className="absolute top-4 right-4 w-10 h-10 border border-neon-cyan flex items-center justify-center shadow-neon-cyan">
-          <span className="text-neon-cyan text-xl font-semibold">✓</span>
-        </div>
-      )}
 
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-cyan/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
