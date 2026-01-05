@@ -27,7 +27,25 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
 
         setStream(mediaStream);
         if (videoRef.current) {
-          videoRef.current.srcObject = mediaStream;
+          const video = videoRef.current;
+          video.srcObject = mediaStream;
+
+          // Debug: log when metadata loads
+          video.onloadedmetadata = () => {
+            console.log('✅ Video metadata loaded', {
+              videoWidth: video.videoWidth,
+              videoHeight: video.videoHeight,
+              readyState: video.readyState
+            });
+          };
+
+          console.log('✅ Camera stream set to video element', {
+            streamActive: mediaStream.active,
+            trackCount: mediaStream.getVideoTracks().length,
+            trackSettings: mediaStream.getVideoTracks()[0]?.getSettings()
+          });
+        } else {
+          console.error('❌ Video ref is null!');
         }
         onStreamReady?.(mediaStream);
         setIsLoading(false);
