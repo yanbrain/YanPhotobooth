@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ToastContainer } from '@/shared/ui/ToastContainer';
+import { NetworkStatus } from '@/shared/ui/NetworkStatus';
+import { IdleTimeout } from '@/shared/ui/IdleTimeout';
+import { ErrorBoundary } from '@/shared/ui/ErrorBoundary';
 
 export const metadata: Metadata = {
   title: 'AI Photobooth',
@@ -13,7 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ErrorBoundary>
+          {children}
+          <ToastContainer />
+          <NetworkStatus />
+          <IdleTimeout timeout={120000} warningTime={30000} />
+        </ErrorBoundary>
+      </body>
     </html>
   );
 }

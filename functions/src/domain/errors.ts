@@ -1,12 +1,33 @@
 import type { ErrorCode, ErrorResponse } from './types';
 
+/**
+ * Maps error codes to HTTP status codes
+ */
+const ERROR_CODE_TO_HTTP_STATUS: Record<ErrorCode, number> = {
+  RUNWARE_TEMPORARY: 503,
+  RUNWARE_BAD_INPUT: 400,
+  RUNWARE_QUOTA: 402,
+  DAILY_CAP: 429,
+  RATE_LIMITED: 429,
+  BOT_CHECK_FAILED: 403,
+  EMAIL_TEMPORARY: 503,
+  EMAIL_BLOCKED: 400,
+  UNKNOWN_ERROR: 500,
+};
+
+/**
+ * Base domain error with error code and HTTP status mapping
+ */
 export class DomainError extends Error {
+  public readonly statusCode: number;
+
   constructor(
-    public code: ErrorCode,
+    public readonly code: ErrorCode,
     message: string
   ) {
     super(message);
     this.name = 'DomainError';
+    this.statusCode = ERROR_CODE_TO_HTTP_STATUS[code];
   }
 
   toResponse(): ErrorResponse {

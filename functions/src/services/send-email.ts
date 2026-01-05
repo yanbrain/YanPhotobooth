@@ -4,7 +4,7 @@ import { sendEmailWithImage } from '../adapters/email-client';
 import { verifyBotToken } from '../adapters/bot-check';
 import { checkRateLimit } from '../adapters/rate-limiter';
 import { getJobStatus } from './generate-portrait';
-import { logger } from '../lib/logger';
+import { logger } from '../utils/logger';
 
 export async function sendGeneratedEmail(
   jobId: string,

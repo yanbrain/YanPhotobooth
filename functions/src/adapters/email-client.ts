@@ -1,11 +1,17 @@
 import { env } from '../config/env';
 import { EmailError } from '../domain/errors';
-import { logger } from '../lib/logger';
+import { logger } from '../utils/logger';
+import { sendEmailMock } from './mocks/email-mock';
 
 export async function sendEmailWithImage(
   to: string,
   imageUrl: string
 ): Promise<void> {
+  // Use mock in local development
+  if (env.useMock) {
+    return sendEmailMock(to, imageUrl);
+  }
+
   const provider = env.emailProvider;
 
   logger.info('Sending email', { to, provider });

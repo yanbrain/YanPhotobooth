@@ -1,7 +1,8 @@
 import fetch from 'node-fetch';
 import { env } from '../config/env';
 import { RunwareError } from '../domain/errors';
-import { logger } from '../lib/logger';
+import { logger } from '../utils/logger';
+import { generateWithRunwareMock } from './mocks/runware-mock';
 
 interface RunwareImageRequest {
   taskType: 'imageInference';
@@ -27,6 +28,10 @@ export async function generateWithRunware(
   prompt: string,
   taskId: string
 ): Promise<string> {
+  // Use mock in local development
+  if (env.useMock) {
+    return generateWithRunwareMock(imageBase64, prompt, taskId);
+  }
   const apiKey = env.runwareApiKey;
 
   if (!apiKey) {

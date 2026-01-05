@@ -1,5 +1,7 @@
 import * as admin from 'firebase-admin';
-import { logger } from '../lib/logger';
+import { logger } from '../utils/logger';
+import { env } from '../config/env';
+import { uploadImageMock, downloadImageAsBase64Mock } from './mocks/storage-mock';
 
 // Initialize Firebase Admin if not already initialized
 if (!admin.apps.length) {
@@ -13,6 +15,10 @@ export async function uploadImage(
   filename: string,
   contentType: string
 ): Promise<string> {
+  // Use mock in local development
+  if (env.useMock) {
+    return uploadImageMock(buffer, filename, contentType);
+  }
   try {
     const bucket = storage.bucket();
     const file = bucket.file(`generated/${filename}`);
@@ -37,6 +43,11 @@ export async function uploadImage(
 }
 
 export async function downloadImageAsBase64(url: string): Promise<string> {
+  // Use mock in local development
+  if (env.useMock) {
+    return downloadImageAsBase64Mock(url);
+  }
+
   try {
     const fetch = (await import('node-fetch')).default;
     const response = await fetch(url);

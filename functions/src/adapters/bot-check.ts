@@ -1,5 +1,5 @@
 import { BotCheckError } from '../domain/errors';
-import { logger } from '../lib/logger';
+import { logger } from '../utils/logger';
 
 export function verifyBotToken(token: string): void {
   // For v1, accept a placeholder token

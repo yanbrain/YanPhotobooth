@@ -35,7 +35,7 @@ next-env.d.ts
 
 # firebase
 functions/node_modules
-functions/lib
+functions/dist
 .firebase
 firebase-debug.log
 firestore-debug.log

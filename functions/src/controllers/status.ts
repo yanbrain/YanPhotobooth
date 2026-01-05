@@ -1,7 +1,7 @@
 import type * as functions from 'firebase-functions';
-import { getGenerationStatus } from '../usecases/get-status';
-import { handleError } from '../lib/http-errors';
-import { logger } from '../lib/logger';
+import { getJobStatus } from '../services/generate-portrait';
+import { handleError } from '../utils/http-errors';
+import { logger } from '../utils/logger';
 
 export async function handleStatus(
   req: functions.https.Request,
@@ -22,7 +22,7 @@ export async function handleStatus(
       return;
     }
 
-    const job = getGenerationStatus(jobId);
+    const job = getJobStatus(jobId);
 
     if (!job) {
       res.status(404).json({

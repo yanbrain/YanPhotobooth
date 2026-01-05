@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&family=Share+Tech+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,18 +15,252 @@ body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
+  background: #070a0f;
+  color: #c9f8ff;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Oxanium', 'Share Tech Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  background:
+    radial-gradient(circle at top right, rgba(0, 229, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 20% 20%, rgba(124, 108, 255, 0.18), transparent 45%),
+    linear-gradient(180deg, #070a0f 0%, #0b1118 55%, #070a0f 100%);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+  background-size: 120px 120px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(2, 5, 9, 0.65) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(9, 16, 24, 0.92);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 229, 255, 0.08),
+      0 0 24px rgba(0, 229, 255, 0.15);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  }
+
+  .neon-text {
+    text-shadow:
+      0 0 8px rgba(0, 229, 255, 0.4),
+      0 0 16px rgba(0, 229, 255, 0.2);
+  }
+
+  .glitch-text {
+    position: relative;
+    animation: glitch 1s linear infinite;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+  }
+
+  .glitch-text::before {
+    animation: glitchTop 1s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  }
+
+  .glitch-text::after {
+    animation: glitchBottom 1.5s linear infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  }
+
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(0, 229, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, 0.08) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .neon-border {
+    border: 1px solid rgba(0, 229, 255, 0.6);
+    box-shadow:
+      0 0 12px rgba(0, 229, 255, 0.2),
+      inset 0 0 12px rgba(0, 229, 255, 0.08);
+  }
+
+  .holographic {
+    background: linear-gradient(
+      45deg,
+      rgba(0, 229, 255, 0.25) 0%,
+      rgba(124, 108, 255, 0.35) 35%,
+      rgba(255, 79, 122, 0.35) 70%,
+      rgba(0, 229, 255, 0.25) 100%
+    );
+    background-size: 300% 300%;
+    animation: gradient-shift 3s ease infinite;
+  }
 }
 
 @layer utilities {
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+}
+
+@keyframes glitchTop {
+  2%, 64% {
+    transform: translate(2px, -2px);
+  }
+  4%, 60% {
+    transform: translate(-2px, 2px);
+  }
+  62% {
+    transform: translate(13px, -1px) skew(-13deg);
+  }
+}
+
+@keyframes glitchBottom {
+  2%, 64% {
+    transform: translate(-2px, 0);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0);
+  }
+  62% {
+    transform: translate(-22px, 5px) skew(21deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::before {
+  content: '01010101 10101010 11001100 00110011';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(0, 229, 255, 0.2);
+  white-space: nowrap;
+  animation: dataScroll 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes dataScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.matrix-bg::before {
+  content: '0 1';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  color: rgba(0, 229, 255, 0.12);
+  word-spacing: 1rem;
+  line-height: 1.5;
+  animation: matrixFall 15s linear infinite;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+@keyframes matrixFall {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(0, 229, 255, 0.45), 0 0 30px rgba(124, 108, 255, 0.25);
+  }
+}
+
+.text-flicker {
+  animation: flicker 3s linear infinite;
+}
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 1;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Touch-friendly minimum sizes */
+button,
+a,
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 44px;
+  min-width: 44px;
 }

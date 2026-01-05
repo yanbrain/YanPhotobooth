@@ -1,7 +1,7 @@
 import type * as functions from 'firebase-functions';
-import { sendGeneratedEmail } from '../usecases/send-email';
-import { handleError } from '../lib/http-errors';
-import { logger } from '../lib/logger';
+import { sendGeneratedEmail } from '../services/send-email';
+import { handleError } from '../utils/http-errors';
+import { logger } from '../utils/logger';
 
 interface EmailRequest {
   jobId: string;
