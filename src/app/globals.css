@@ -178,3 +178,92 @@ body::after {
     background-position: 0% 50%;
   }
 }
+
+/* Data Stream Effect */
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::before {
+  content: '01010101 10101010 11001100 00110011';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(0, 240, 255, 0.15);
+  white-space: nowrap;
+  animation: dataScroll 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes dataScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Matrix Rain Effect (subtle) */
+.matrix-bg::before {
+  content: '0 1';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  color: rgba(0, 240, 255, 0.1);
+  word-spacing: 1rem;
+  line-height: 1.5;
+  animation: matrixFall 15s linear infinite;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+@keyframes matrixFall {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Enhanced Button Pulse */
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.6), 0 0 40px rgba(157, 0, 255, 0.3);
+  }
+}
+
+/* Text Flicker */
+.text-flicker {
+  animation: flicker 3s linear infinite;
+}
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 1;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+  }
+}
+
+/* Touch-friendly minimum sizes */
+button,
+a,
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 44px;
+  min-width: 44px;
+}
