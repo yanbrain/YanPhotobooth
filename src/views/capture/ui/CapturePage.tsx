@@ -51,93 +51,105 @@ export function CapturePage() {
   };
 
   useEffect(() => {
-    if (previewUrl && stream) {
-      stopCameraStream(stream);
-      setStream(null);
-      videoRef.current = null;
-    }
-  }, [previewUrl, stream]);
+    return () => {
+      if (stream) {
+        stopCameraStream(stream);
+      }
+    };
+  }, [stream]);
 
   return (
-    <div className="relative h-[100svh] w-full overflow-hidden">
+    <div className="relative min-h-[100svh] w-full overflow-hidden">
       <div className="fixed inset-0 bg-cyber-darker">
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 h-full flex items-center justify-center">
-        <div className="w-full h-full">
-          <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass h-full">
+      <div className="relative z-10 flex min-h-[100svh] w-full items-center justify-center px-4 py-6 sm:px-6 lg:px-10">
+        <div className="w-full max-w-6xl">
+          <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass min-h-[calc(100svh-3rem)]">
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
             <div className="relative flex flex-col h-full min-h-0">
-              <header className="flex flex-col gap-3 bg-cyber-dark/70 px-4 sm:px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
+              <header className="flex flex-col gap-3 bg-cyber-dark/70 px-5 sm:px-8 py-4 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
                 <div className="hidden md:block" />
 
                 <div className="text-center">
                   <h1 className="text-2xl sm:text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.25em] sm:tracking-[0.3em] mb-1">
                     AI Photobooth
                   </h1>
+                  <p className="text-xs sm:text-sm text-neon-cyan/70 font-mono uppercase tracking-[0.2em]">
+                    Align your frame before capturing
+                  </p>
                 </div>
 
                 <div className="hidden md:block" />
               </header>
 
-              <div className="flex-1 flex flex-col px-4 sm:px-6 py-3 sm:py-4 gap-4 sm:gap-5 min-h-0">
-                <div className="flex-1 flex items-center justify-center min-h-0">
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <div className="relative w-full max-w-5xl aspect-video mx-auto min-h-[260px] sm:min-h-[360px] lg:min-h-[480px]">
+              <div className="flex-1 flex flex-col px-5 sm:px-8 py-5 sm:py-6 gap-6 min-h-0">
+                <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] items-start">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center justify-between text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-neon-cyan/70">
+                      <span>Live Feed</span>
+                      <span>16:9 Frame</span>
+                    </div>
+
+                    <div className="relative w-full aspect-video min-h-[240px] sm:min-h-[320px] lg:min-h-[420px]">
                       <div className="relative h-full glass-card rounded-none border-2 border-neon-cyan/60 overflow-hidden">
                         <div className="absolute inset-0">
-                          {previewUrl ? (
-                            <div className="relative w-full h-full">
-                              <img
-                                src={previewUrl}
-                                alt="Captured photo"
-                                className="w-full h-full object-cover"
-                              />
-
-                              <div className="absolute top-4 left-1/2 -translate-x-1/2 glass-card px-6 py-2 rounded-none border border-neon-green">
-                                <p className="text-neon-green text-sm font-mono uppercase tracking-[0.2em] flex items-center gap-2">
-                                  Photo Captured
-                                </p>
-                              </div>
-                            </div>
-                          ) : (
-                            <CameraPreview
-                              key={cameraKey}
-                              onStreamReady={handleStreamReady}
-                              onVideoReady={handleVideoReady}
-                              onError={setError}
-                            />
-                          )}
+                          <CameraPreview
+                            key={cameraKey}
+                            onStreamReady={handleStreamReady}
+                            onVideoReady={handleVideoReady}
+                            onError={setError}
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex justify-center items-center gap-4 sm:gap-6 pb-2 w-full px-4 sm:px-6">
-                  {previewUrl ? (
-                    <div className="flex flex-col items-center gap-4 w-full">
-                      <div className="flex flex-col md:flex-row gap-3 sm:gap-4 w-full">
-                        <Button onClick={handleRetake} variant="ghost" size="md" className="w-full">
-                          Retake
-                        </Button>
-                        <Button
-                          onClick={handleNext}
-                          variant="primary"
-                          size="lg"
-                          className="w-full"
-                        >
-                          Use This Photo
-                        </Button>
+                  <aside className="flex flex-col gap-4">
+                    <div className="glass-card rounded-none border border-neon-cyan/40 p-4 sm:p-5">
+                      <p className="text-sm font-mono uppercase tracking-[0.2em] text-neon-cyan/70">
+                        Session Status
+                      </p>
+                      <p className="mt-2 text-base text-neon-cyan">
+                        {previewUrl ? 'Photo captured. Confirm or retake.' : 'Ready for capture.'}
+                      </p>
+                      <p className="mt-3 text-xs text-neon-cyan/60">
+                        Keep your face centered and maintain even lighting for best results.
+                      </p>
+                    </div>
+
+                    <div className="glass-card rounded-none border border-neon-cyan/40 p-4 sm:p-5">
+                      <p className="text-sm font-mono uppercase tracking-[0.2em] text-neon-cyan/70">
+                        Last Capture
+                      </p>
+                      <div className="mt-3 aspect-video w-full overflow-hidden border border-neon-cyan/40 bg-cyber-dark/70">
+                        {previewUrl ? (
+                          <img src={previewUrl} alt="Last captured photo" className="h-full w-full object-cover" />
+                        ) : (
+                          <div className="flex h-full items-center justify-center text-xs text-neon-cyan/50 font-mono uppercase tracking-[0.2em]">
+                            No capture yet
+                          </div>
+                        )}
                       </div>
                     </div>
-                  ) : (
-                    <div className="flex flex-col items-center gap-4">
-                      <ShutterButton onClick={handleCapture} disabled={!stream} />
-                    </div>
-                  )}
+                  </aside>
+                </div>
+
+                <div className="flex flex-col gap-4">
+                  <div className="flex justify-center items-center gap-4 sm:gap-6 w-full">
+                    <ShutterButton onClick={handleCapture} disabled={!stream} />
+                  </div>
+
+                  <div className="flex flex-col md:flex-row gap-3 sm:gap-4 w-full">
+                    <Button onClick={handleRetake} variant="ghost" size="md" className="w-full">
+                      Retake
+                    </Button>
+                    <Button onClick={handleNext} variant="primary" size="lg" className="w-full" disabled={!previewUrl}>
+                      Use This Photo
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
