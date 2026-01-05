@@ -85,28 +85,28 @@ export function ReviewPage() {
     const errorMapping = mapError(generationError.code);
 
     return (
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative min-h-[100svh] overflow-hidden">
         <div className="fixed inset-0 bg-cyber-darker">
           <div className="absolute inset-0 cyber-grid opacity-15" />
         </div>
 
-        <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
+        <div className="relative z-10 min-h-[100svh] flex items-center justify-center px-3 sm:px-4 py-3 sm:py-4">
           <div className="w-full max-w-3xl">
             <div className="relative glass-card rounded-none border border-cyber-pink/70 shadow-glass">
               <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-              <div className="relative flex flex-col items-center justify-center px-8 py-10 gap-6 min-h-0">
+              <div className="relative flex flex-col items-center justify-center px-4 sm:px-8 py-8 sm:py-10 gap-5 sm:gap-6 min-h-0">
                 <div className="text-6xl">⚠️</div>
 
-                <h2 className="text-2xl md:text-3xl font-cyber font-semibold text-cyber-pink neon-text text-center uppercase tracking-[0.2em]">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-cyber font-semibold text-cyber-pink neon-text text-center uppercase tracking-[0.15em] sm:tracking-[0.2em]">
                   {errorMapping.title}
                 </h2>
 
-                <p className="text-neon-cyan/80 text-base md:text-lg text-center font-mono max-w-xl">
+                <p className="text-neon-cyan/80 text-sm sm:text-base md:text-lg text-center font-mono max-w-xl">
                   {errorMapping.message}
                 </p>
 
-                <div className="flex flex-col md:flex-row gap-4 w-full max-w-md">
+                <div className="flex flex-col md:flex-row gap-3 sm:gap-4 w-full max-w-md">
                   {errorMapping.canRetry && (
                     <Button onClick={handleBack} variant="primary" className="flex-1">
                       Try Again
@@ -130,48 +130,48 @@ export function ReviewPage() {
   }
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative min-h-[100svh] overflow-hidden">
       <div className="fixed inset-0 bg-cyber-darker">
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
+      <div className="relative z-10 min-h-[100svh] flex items-center justify-center px-3 sm:px-4 py-3 sm:py-4">
         <div className="w-full max-w-6xl">
           <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
             <div className="relative flex flex-col h-full min-h-0">
-              <header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b border-neon-cyan/20 bg-cyber-dark/70 px-6 py-4">
-                <div className="flex items-center gap-3">
-                  <Button onClick={handleBack} variant="ghost" size="sm">
+              <header className="flex flex-col gap-3 border-b border-neon-cyan/20 bg-cyber-dark/70 px-4 sm:px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
+                <div className="flex items-center justify-center md:justify-start gap-3">
+                  <Button onClick={handleBack} variant="ghost" size="sm" className="w-full md:w-auto">
                     ← Back
                   </Button>
                 </div>
 
                 <div className="text-center">
-                  <h1 className="text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.25em] sm:tracking-[0.3em] mb-1">
                     AI Photobooth
                   </h1>
-                  <p className="text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.4em]">
+                  <p className="text-neon-cyan/50 text-[10px] sm:text-xs font-mono uppercase tracking-[0.35em] sm:tracking-[0.4em]">
                     Review Output
                   </p>
                 </div>
 
-                <div className="flex items-center justify-end text-neon-cyan/60 text-xs font-mono uppercase tracking-[0.3em]">
+                <div className="flex items-center justify-center md:justify-end text-neon-cyan/60 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em]">
                   Output Review
                 </div>
               </header>
 
-              <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 gap-6 min-h-0">
+              <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-4 sm:py-6 gap-5 sm:gap-6 min-h-0">
                 <div className="relative w-full max-w-5xl">
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-20 glass-card px-6 py-2 rounded-none border border-neon-green">
-                    <p className="text-neon-green text-base font-cyber font-semibold uppercase tracking-[0.2em] flex items-center gap-2">
+                  <div className="absolute -top-7 sm:-top-8 left-1/2 -translate-x-1/2 z-20 glass-card px-4 sm:px-6 py-2 rounded-none border border-neon-green">
+                    <p className="text-neon-green text-xs sm:text-base font-cyber font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] flex items-center gap-2">
                       <span className="text-xl">✨</span>
                       Portrait Generated Successfully
                     </p>
                   </div>
 
-                  <div className="relative aspect-video max-h-[55vh]">
+                  <div className="relative aspect-video max-h-[48vh] sm:max-h-[52vh] lg:max-h-[58vh]">
                     <div className="relative h-full glass-card rounded-none border border-neon-cyan/60 overflow-hidden">
                       <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan z-10" />
                       <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan z-10" />
@@ -191,13 +191,13 @@ export function ReviewPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-6 w-full">
-                  <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full max-w-2xl">
+                <div className="flex flex-col items-center gap-5 sm:gap-6 w-full">
+                  <div className="flex flex-col md:flex-row justify-center gap-3 sm:gap-4 md:gap-6 w-full max-w-2xl">
                     <Button
                       onClick={handlePrint}
                       variant="primary"
                       size="lg"
-                      className="flex-1 py-5 text-lg"
+                      className="flex-1 py-4 sm:py-5 text-base sm:text-lg"
                     >
                       <span className="flex items-center gap-2">
                         <span>🖨️</span>
@@ -208,7 +208,7 @@ export function ReviewPage() {
                       onClick={handleEmailClick}
                       variant="primary"
                       size="lg"
-                      className="flex-1 py-5 text-lg"
+                      className="flex-1 py-4 sm:py-5 text-base sm:text-lg"
                     >
                       <span className="flex items-center gap-2">
                         <span>📧</span>

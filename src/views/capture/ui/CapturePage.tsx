@@ -59,52 +59,52 @@ export function CapturePage() {
   }, [previewUrl, stream]);
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative min-h-[100svh] overflow-hidden">
       <div className="fixed inset-0 bg-cyber-darker">
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 h-screen flex items-center justify-center px-4 py-4">
+      <div className="relative z-10 min-h-[100svh] flex items-center justify-center px-3 sm:px-4 py-3 sm:py-4">
         <div className="w-full max-w-6xl">
           <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
             <div className="relative flex flex-col h-full min-h-0">
-              <header className="flex items-center justify-between border-b border-neon-cyan/20 bg-cyber-dark/70 px-6 py-3">
-                <div className="flex items-center gap-3 text-neon-cyan/70 text-xs font-mono uppercase tracking-[0.25em]">
+              <header className="flex flex-col gap-3 border-b border-neon-cyan/20 bg-cyber-dark/70 px-4 sm:px-6 py-3 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
+                <div className="flex items-center justify-center gap-3 text-neon-cyan/70 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] md:justify-start">
                   <div className="w-2 h-2 bg-neon-green animate-pulse" />
                   <span>Live Capture</span>
                 </div>
 
                 <div className="text-center">
-                  <h1 className="text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.25em] sm:tracking-[0.3em] mb-1">
                     AI Photobooth
                   </h1>
-                  <p className="text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.5em]">
+                  <p className="text-neon-cyan/50 text-[10px] sm:text-xs font-mono uppercase tracking-[0.4em] sm:tracking-[0.5em]">
                     Capture
                   </p>
                 </div>
 
-                <div className="flex items-center justify-end gap-3 text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.25em]">
+                <div className="flex items-center justify-center gap-3 text-neon-cyan/50 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] md:justify-end">
                   <span className="w-2 h-2 bg-neon-cyan animate-pulse" />
                   <span>Camera Ready</span>
                 </div>
               </header>
 
-              <div className="flex-1 flex flex-col px-6 py-5 gap-6 min-h-0">
-                <div className="flex flex-col items-center gap-3 text-center">
-                  <p className="text-neon-cyan text-sm font-mono uppercase tracking-[0.3em] flex items-center gap-2">
+              <div className="flex-1 flex flex-col px-4 sm:px-6 py-4 sm:py-5 gap-4 sm:gap-6 min-h-0">
+                <div className="flex flex-col items-center gap-2 sm:gap-3 text-center">
+                  <p className="text-neon-cyan text-xs sm:text-sm font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em] flex items-center gap-2">
                     <span className="text-lg">📸</span>
                     Position yourself in the frame
                   </p>
-                  <p className="text-neon-cyan/60 text-xs font-mono">
+                  <p className="text-neon-cyan/60 text-[11px] sm:text-xs font-mono">
                     Keep your face centered and use the shutter to capture
                   </p>
                 </div>
 
                 <div className="flex-1 flex items-center justify-center min-h-0">
-                  <div className="relative w-full max-w-4xl h-full">
-                    <div className="relative aspect-video max-h-[55vh] w-full mx-auto">
+                  <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
+                    <div className="relative aspect-video max-h-[48vh] sm:max-h-[52vh] lg:max-h-[58vh] w-full mx-auto">
                       <div className="relative h-full glass-card rounded-none border-2 border-neon-cyan/60 overflow-hidden">
                         <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan z-10" />
                         <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan z-10" />
@@ -141,14 +141,19 @@ export function CapturePage() {
                   </div>
                 </div>
 
-                <div className="flex justify-center items-center gap-6 pb-2">
+                <div className="flex justify-center items-center gap-4 sm:gap-6 pb-2">
                   {previewUrl ? (
                     <div className="flex flex-col items-center gap-4">
-                      <div className="flex flex-col md:flex-row gap-4">
-                        <Button onClick={handleRetake} variant="ghost" size="md">
+                      <div className="flex flex-col md:flex-row gap-3 sm:gap-4 w-full">
+                        <Button onClick={handleRetake} variant="ghost" size="md" className="w-full md:w-auto">
                           ← Retake
                         </Button>
-                        <Button onClick={handleNext} variant="primary" size="lg" className="min-w-64">
+                        <Button
+                          onClick={handleNext}
+                          variant="primary"
+                          size="lg"
+                          className="w-full md:w-auto md:min-w-64"
+                        >
                           <span className="flex items-center gap-2">
                             <span>✨</span>
                             Use This Photo

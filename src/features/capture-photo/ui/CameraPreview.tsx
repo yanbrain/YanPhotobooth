@@ -131,7 +131,7 @@ export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPr
 
   return (
     <div className="relative w-full h-full group">
-      <div className="relative w-full h-full aspect-video glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass bg-black/70">
+      <div className="relative w-full h-full glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass bg-black/70">
         <video
           ref={videoRef}
           autoPlay

@@ -13,8 +13,9 @@ export function StyleCard({ style, isSelected, onClick }: StyleCardProps) {
   return (
     <button
       onClick={onClick}
+      data-style-card
       className={`
-        group relative flex-shrink-0 w-72 h-80 rounded-none border overflow-visible
+        group relative flex-shrink-0 snap-center w-56 h-64 sm:w-64 sm:h-72 md:w-72 md:h-80 rounded-none border overflow-visible
         transition-all duration-500 transform
         ${isSelected
           ? 'border-2 border-neon-cyan shadow-neon-cyan scale-105'
@@ -50,7 +51,7 @@ export function StyleCard({ style, isSelected, onClick }: StyleCardProps) {
       >
         <h3
           className={`
-            text-xl font-cyber font-semibold uppercase tracking-[0.3em]
+            text-base sm:text-lg md:text-xl font-cyber font-semibold uppercase tracking-[0.2em] sm:tracking-[0.3em]
             transition-all duration-300
             ${isSelected ? 'text-neon-cyan neon-text' : 'text-neon-cyan'}
           `}

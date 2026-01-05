@@ -38,7 +38,12 @@ export function StyleCarousel({
   useEffect(() => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      const cardWidth = 288 + 24; // card width + gap
+      const track = container.firstElementChild as HTMLElement | null;
+      const firstCard = track?.firstElementChild as HTMLElement | null;
+      const gapValue = track
+        ? Number.parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0')
+        : 0;
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width + gapValue : 0;
       container.scrollTo({
         left: currentIndex * cardWidth,
         behavior: 'smooth',
@@ -50,12 +55,12 @@ export function StyleCarousel({
     <div className="relative w-full">
       <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-      <div className="relative flex items-center gap-4">
+      <div className="relative flex items-center gap-2 sm:gap-3 md:gap-4">
         <button
           onClick={handlePrevious}
           disabled={!canScrollLeft}
           className={`
-            group relative flex-shrink-0 w-16 h-16 rounded-none border
+            group relative flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-none border
             transition-all duration-300 transform
             ${
               canScrollLeft
@@ -72,10 +77,12 @@ export function StyleCarousel({
             </>
           )}
 
-          <div className={`
-            absolute inset-0 flex items-center justify-center text-4xl font-bold
-            ${canScrollLeft ? 'text-neon-cyan' : 'text-gray-600'}
-          `}>
+          <div
+            className={`
+              absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-bold
+              ${canScrollLeft ? 'text-neon-cyan' : 'text-gray-600'}
+            `}
+          >
             ‹
           </div>
 
@@ -91,9 +98,9 @@ export function StyleCarousel({
 
           <div
             ref={scrollContainerRef}
-            className="overflow-visible"
+            className="overflow-x-auto scroll-smooth"
           >
-            <div className="flex gap-6 px-2 py-6">
+            <div className="flex gap-4 sm:gap-6 px-1 sm:px-2 py-4 sm:py-6 snap-x snap-mandatory">
               {styles.map((style) => (
                 <StyleCard
                   key={style.id}
@@ -110,7 +117,7 @@ export function StyleCarousel({
           onClick={handleNext}
           disabled={!canScrollRight}
           className={`
-            group relative flex-shrink-0 w-16 h-16 rounded-none border
+            group relative flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-none border
             transition-all duration-300 transform
             ${
               canScrollRight
@@ -127,10 +134,12 @@ export function StyleCarousel({
             </>
           )}
 
-          <div className={`
-            absolute inset-0 flex items-center justify-center text-4xl font-bold
-            ${canScrollRight ? 'text-neon-cyan' : 'text-gray-600'}
-          `}>
+          <div
+            className={`
+              absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-bold
+              ${canScrollRight ? 'text-neon-cyan' : 'text-gray-600'}
+            `}
+          >
             ›
           </div>
 
@@ -140,7 +149,7 @@ export function StyleCarousel({
         </button>
       </div>
 
-      <div className="flex justify-center gap-3 mt-8">
+      <div className="flex justify-center gap-3 mt-6 sm:mt-8">
         {styles.map((_, index) => (
           <button
             key={index}
