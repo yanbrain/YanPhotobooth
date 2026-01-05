@@ -103,23 +103,13 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
 
   return (
     <div className="relative w-full h-full group">
-      <div className="relative w-full h-full glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass" style={{ minHeight: '400px' }}>
+      <div className="relative w-full h-full min-h-[420px] glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass bg-black/70">
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
-          className="w-full h-full object-cover"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 1,
-            display: 'block',
-            backgroundColor: 'black'
-          }}
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
         <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" style={{ zIndex: 5 }} />

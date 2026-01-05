@@ -90,37 +90,39 @@ export function ReviewPage() {
           <div className="absolute inset-0 cyber-grid opacity-15" />
         </div>
 
-        <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8">
-          <div className="max-w-lg w-full glass-card rounded-none border border-cyber-pink p-8 md:p-10">
-            <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
+        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-6 md:py-10">
+          <div className="w-full max-w-3xl">
+            <div className="relative glass-card rounded-none border border-cyber-pink/70 shadow-glass">
+              <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-            <div className="relative text-center mb-6">
-              <div className="text-6xl">⚠️</div>
+              <div className="relative flex flex-col items-center justify-center px-8 py-12 gap-6 min-h-[60vh]">
+                <div className="text-6xl">⚠️</div>
+
+                <h2 className="text-2xl md:text-3xl font-cyber font-semibold text-cyber-pink neon-text text-center uppercase tracking-[0.2em]">
+                  {errorMapping.title}
+                </h2>
+
+                <p className="text-neon-cyan/80 text-base md:text-lg text-center font-mono max-w-xl">
+                  {errorMapping.message}
+                </p>
+
+                <div className="flex flex-col md:flex-row gap-4 w-full max-w-md">
+                  {errorMapping.canRetry && (
+                    <Button onClick={handleBack} variant="primary" className="flex-1">
+                      Try Again
+                    </Button>
+                  )}
+                  <Button onClick={() => router.push('/capture')} variant="ghost" className="flex-1">
+                    Start Over
+                  </Button>
+                </div>
+              </div>
+
+              <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-cyber-pink/70" />
+              <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-cyber-pink/70" />
+              <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-cyber-pink/70" />
+              <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-cyber-pink/70" />
             </div>
-
-            <h2 className="relative text-2xl md:text-3xl font-cyber font-semibold text-cyber-pink neon-text mb-4 text-center uppercase tracking-[0.2em]">
-              {errorMapping.title}
-            </h2>
-
-            <p className="relative text-neon-cyan/80 text-base md:text-lg mb-8 text-center font-mono">
-              {errorMapping.message}
-            </p>
-
-            <div className="relative flex flex-col md:flex-row gap-4">
-              {errorMapping.canRetry && (
-                <Button onClick={handleBack} variant="primary" className="flex-1">
-                  Try Again
-                </Button>
-              )}
-              <Button onClick={() => router.push('/capture')} variant="ghost" className="flex-1">
-                Start Over
-              </Button>
-            </div>
-
-            <div className="absolute top-2 left-2 w-6 h-6 border-t border-l border-cyber-pink" />
-            <div className="absolute top-2 right-2 w-6 h-6 border-t border-r border-cyber-pink" />
-            <div className="absolute bottom-2 left-2 w-6 h-6 border-b border-l border-cyber-pink" />
-            <div className="absolute bottom-2 right-2 w-6 h-6 border-b border-r border-cyber-pink" />
           </div>
         </div>
       </div>
@@ -133,84 +135,100 @@ export function ReviewPage() {
         <div className="absolute inset-0 cyber-grid opacity-15" />
       </div>
 
-      <div className="relative z-10 min-h-screen flex flex-col">
-        <header className="flex justify-between items-center p-6 md:p-8">
-          <Button onClick={handleBack} variant="ghost" size="sm">
-            ← Back
-          </Button>
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-6 md:py-10">
+        <div className="w-full max-w-6xl">
+          <div className="relative glass-card rounded-none border border-neon-cyan/40 shadow-glass">
+            <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
-              AI Photobooth
-            </h1>
-            <div className="flex items-center justify-center gap-2 text-neon-cyan/60 text-sm font-mono">
-              <div className="w-2 h-2 bg-neon-green animate-pulse" />
-              <span>STEP 3 / 3</span>
-            </div>
-          </div>
+            <div className="relative flex flex-col min-h-[80vh]">
+              <header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b border-neon-cyan/20 bg-cyber-dark/70 px-6 py-4">
+                <div className="flex items-center gap-3">
+                  <Button onClick={handleBack} variant="ghost" size="sm">
+                    ← Back
+                  </Button>
+                </div>
 
-          <div className="w-32" />
-        </header>
+                <div className="text-center">
+                  <h1 className="text-4xl md:text-5xl font-cyber font-semibold text-neon-cyan neon-text uppercase tracking-[0.3em] mb-1">
+                    AI Photobooth
+                  </h1>
+                  <p className="text-neon-cyan/50 text-xs font-mono uppercase tracking-[0.4em]">
+                    Step 3 / 3
+                  </p>
+                </div>
 
-        <div className="flex-1 flex items-center justify-center p-4 md:p-8">
-          <div className="relative w-full max-w-5xl">
-            <div className="absolute -top-14 left-1/2 -translate-x-1/2 z-20 glass-card px-8 py-3 rounded-none border border-neon-green">
-              <p className="text-neon-green text-base font-cyber font-semibold uppercase tracking-[0.2em] flex items-center gap-2">
-                <span className="text-xl">✨</span>
-                Portrait Generated Successfully
-              </p>
-            </div>
+                <div className="flex items-center justify-end text-neon-cyan/60 text-xs font-mono uppercase tracking-[0.3em]">
+                  Output Review
+                </div>
+              </header>
 
-            <div className="relative aspect-video">
-              <div className="relative h-full glass-card rounded-none border border-neon-cyan/60 overflow-hidden">
-                <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan z-10" />
-                <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan z-10" />
-                <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-neon-cyan z-10" />
-                <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-neon-cyan z-10" />
+              <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 gap-8">
+                <div className="relative w-full max-w-5xl">
+                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20 glass-card px-8 py-3 rounded-none border border-neon-green">
+                    <p className="text-neon-green text-base font-cyber font-semibold uppercase tracking-[0.2em] flex items-center gap-2">
+                      <span className="text-xl">✨</span>
+                      Portrait Generated Successfully
+                    </p>
+                  </div>
 
-                {resultUrl && (
-                  <img
-                    src={resultUrl}
-                    alt="Generated portrait"
-                    className="w-full h-full object-cover"
-                  />
-                )}
+                  <div className="relative aspect-video min-h-[420px]">
+                    <div className="relative h-full glass-card rounded-none border border-neon-cyan/60 overflow-hidden">
+                      <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-neon-cyan z-10" />
+                      <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-neon-cyan z-10" />
+                      <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-neon-cyan z-10" />
+                      <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-neon-cyan z-10" />
 
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-cyan/5 to-transparent pointer-events-none" />
+                      {resultUrl && (
+                        <img
+                          src={resultUrl}
+                          alt="Generated portrait"
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-cyan/5 to-transparent pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center gap-6 w-full">
+                  <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full max-w-2xl">
+                    <Button
+                      onClick={handlePrint}
+                      variant="primary"
+                      size="lg"
+                      className="flex-1 py-5 text-lg"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span>🖨️</span>
+                        Print Photo
+                      </span>
+                    </Button>
+                    <Button
+                      onClick={handleEmailClick}
+                      variant="primary"
+                      size="lg"
+                      className="flex-1 py-5 text-lg"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span>📧</span>
+                        Email Photo
+                      </span>
+                    </Button>
+                  </div>
+
+                  <p className="text-neon-cyan/60 text-sm font-mono text-center">
+                    Choose how you'd like to receive your AI-generated masterpiece
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className="flex flex-col items-center gap-6 p-6 md:p-8">
-          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full max-w-2xl">
-            <Button
-              onClick={handlePrint}
-              variant="primary"
-              size="lg"
-              className="flex-1 py-5 text-lg"
-            >
-              <span className="flex items-center gap-2">
-                <span>🖨️</span>
-                Print Photo
-              </span>
-            </Button>
-            <Button
-              onClick={handleEmailClick}
-              variant="primary"
-              size="lg"
-              className="flex-1 py-5 text-lg"
-            >
-              <span className="flex items-center gap-2">
-                <span>📧</span>
-                Email Photo
-              </span>
-            </Button>
+            <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-neon-cyan/70" />
+            <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-neon-cyan/70" />
+            <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-neon-cyan/70" />
+            <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-neon-cyan/70" />
           </div>
-
-          <p className="text-neon-cyan/60 text-sm font-mono text-center">
-            Choose how you'd like to receive your AI-generated masterpiece
-          </p>
         </div>
       </div>
 
