@@ -14,14 +14,14 @@ export function StyleCard({ style, isSelected, onClick }: StyleCardProps) {
     <button
       onClick={onClick}
       className={`
-        group relative flex-shrink-0 w-80 h-96 rounded-none overflow-hidden border
+        group relative flex-shrink-0 w-72 h-80 rounded-none border overflow-visible
         transition-all duration-500 transform
         ${isSelected
           ? 'border-2 border-neon-cyan shadow-neon-cyan scale-105'
           : 'border border-neon-cyan/30 hover:border-neon-purple hover:scale-105 hover:shadow-neon-purple'}
       `}
     >
-      <div className="absolute inset-0 glass-card">
+      <div className="absolute inset-0 glass-card overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-15" />
 
         <div className="absolute inset-0 flex items-center justify-center">
@@ -39,18 +39,22 @@ export function StyleCard({ style, isSelected, onClick }: StyleCardProps) {
         <div className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-neon-cyan transition-all duration-300 group-hover:w-7 group-hover:h-7" />
       </div>
 
-      <div className={`
-        absolute bottom-0 left-0 right-0 p-4
-        transition-all duration-300
-        ${isSelected
-          ? 'bg-cyber-dark border-t border-neon-cyan/60'
-          : 'bg-cyber-dark/90 border-t border-neon-cyan/40'}
-      `}>
-        <h3 className={`
-          text-2xl font-cyber font-semibold uppercase tracking-[0.3em]
+      <div
+        className={`
+          absolute bottom-0 left-0 right-0 p-4
           transition-all duration-300
-          ${isSelected ? 'text-neon-cyan neon-text' : 'text-neon-cyan'}
-        `}>
+          ${isSelected
+            ? 'bg-cyber-dark border-t border-neon-cyan/60'
+            : 'bg-cyber-dark/90 border-t border-neon-cyan/40'}
+        `}
+      >
+        <h3
+          className={`
+            text-xl font-cyber font-semibold uppercase tracking-[0.3em]
+            transition-all duration-300
+            ${isSelected ? 'text-neon-cyan neon-text' : 'text-neon-cyan'}
+          `}
+        >
           {style.name}
         </h3>
       </div>

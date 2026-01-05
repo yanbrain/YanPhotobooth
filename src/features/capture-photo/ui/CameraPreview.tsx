@@ -5,10 +5,11 @@ import { requestCameraAccess, stopCameraStream } from '../lib/camera-utils';
 
 interface CameraPreviewProps {
   onStreamReady?: (stream: MediaStream) => void;
+  onVideoReady?: (videoElement: HTMLVideoElement) => void;
   onError?: (error: string) => void;
 }
 
-export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
+export function CameraPreview({ onStreamReady, onVideoReady, onError }: CameraPreviewProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -17,6 +18,7 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
 
   useEffect(() => {
     let mounted = true;
+    let readyTimeout: ReturnType<typeof setTimeout> | null = null;
 
     async function initCamera() {
       try {
@@ -30,9 +32,10 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
         if (videoRef.current) {
           const video = videoRef.current;
           video.srcObject = mediaStream;
+          onVideoReady?.(video);
 
-          video.onloadedmetadata = async () => {
-            console.log('✅ Video metadata loaded', {
+          const markReady = async () => {
+            console.log('✅ Video stream ready', {
               videoWidth: video.videoWidth,
               videoHeight: video.videoHeight,
               readyState: video.readyState
@@ -45,6 +48,21 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
             setIsReady(true);
             setIsLoading(false);
           };
+
+          video.onloadedmetadata = markReady;
+          video.onloadeddata = markReady;
+          video.oncanplay = markReady;
+          video.onplaying = markReady;
+
+          if (video.readyState >= 2) {
+            markReady();
+          } else {
+            readyTimeout = setTimeout(() => {
+              if (video.readyState >= 2) {
+                markReady();
+              }
+            }, 600);
+          }
 
           console.log('✅ Camera stream set to video element', {
             streamActive: mediaStream.active,
@@ -68,6 +86,9 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
 
     return () => {
       mounted = false;
+      if (readyTimeout) {
+        clearTimeout(readyTimeout);
+      }
       stopCameraStream(stream);
     };
   }, []);
@@ -110,13 +131,13 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
 
   return (
     <div className="relative w-full h-full group">
-      <div className="relative w-full h-full min-h-[420px] glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass bg-black/70">
+      <div className="relative w-full h-full aspect-video glass-card rounded-none border border-neon-cyan/40 overflow-hidden shadow-glass bg-black/70">
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover bg-black"
         />
 
         <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" style={{ zIndex: 5 }} />
@@ -126,24 +147,18 @@ export function CameraPreview({ onStreamReady, onError }: CameraPreviewProps) {
         </div>
 
         {(isLoading || !isReady) && (
-          <div className="absolute inset-0 flex items-center justify-center bg-cyber-dark/90" style={{ zIndex: 30 }}>
-            <div className="text-center max-w-sm">
-              <div className="mb-4 text-5xl">📷</div>
-
-              <p className="text-neon-cyan text-xl font-cyber font-semibold neon-text">
-                Camera Feed Pending
+          <div className="absolute inset-x-0 bottom-6 flex items-center justify-center px-4" style={{ zIndex: 30 }}>
+            <div className="flex flex-col items-center gap-2 glass-card border border-neon-cyan/30 bg-cyber-dark/80 px-4 py-3 text-center shadow-glass">
+              <p className="text-neon-cyan text-xs font-mono uppercase tracking-[0.2em]">
+                Allow camera access to start the live feed
               </p>
-              <p className="text-neon-cyan/60 text-sm font-mono mt-2">
-                Allow camera access in your browser to display the live feed.
+              <p className="text-neon-cyan/50 text-[11px] font-mono">
+                The browser permission prompt must be accepted to continue.
               </p>
-              <p className="text-neon-cyan/40 text-xs font-mono mt-3">
-                If permission was denied, refresh and approve access.
-              </p>
-
-              <div className="flex justify-center gap-2 mt-4">
-                <div className="w-3 h-3 bg-neon-cyan animate-pulse" style={{ animationDelay: '0ms' }} />
-                <div className="w-3 h-3 bg-neon-cyan animate-pulse" style={{ animationDelay: '200ms' }} />
-                <div className="w-3 h-3 bg-neon-cyan animate-pulse" style={{ animationDelay: '400ms' }} />
+              <div className="flex justify-center gap-2">
+                <div className="w-2 h-2 bg-neon-cyan animate-pulse" style={{ animationDelay: '0ms' }} />
+                <div className="w-2 h-2 bg-neon-cyan animate-pulse" style={{ animationDelay: '200ms' }} />
+                <div className="w-2 h-2 bg-neon-cyan animate-pulse" style={{ animationDelay: '400ms' }} />
               </div>
             </div>
           </div>
